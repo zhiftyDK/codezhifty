@@ -1,2 +1,17 @@
-helloo
-sdasad
+export function encrypt(x){
+    return x.replace(/a/g, '!')
+    .replace(/b/g, '¤')
+    .replace(/c/g, '%')
+    .replace(/d/g, '&')
+    .replace(/e/g, '/')
+    .replace(/f/g, '(')
+    .replace(/g/g, ')')
+    .replace(/h/g, '=')
+    .replace(/i/g, '?')
+    .replace(/j/g, '`')
+    .replace(/k/g, '^')
+    .replace(/l/g, '*')
+    .replace(/m/g, '_')
+    .replace(/n/g, '-')
+    .replace(/o/g, '<')
+}
