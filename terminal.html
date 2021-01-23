@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="ztermicon.png" type="image/png" sizes="32x32">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>ZTerm</title>
     <style>
         *{
@@ -40,6 +41,8 @@
         <input type="text" id="terminalInput" autocomplete="off">
     </div>
 
+    <img id="junkOne" style="display: none;"/>
+    <p id="timer" style="display: none;"></p>
     <script>
         //Variables
         const terminal = document.getElementById("terminal");
@@ -83,6 +86,31 @@
                     terminalDatabase.push("You started " + startLink);
                     terminalDatabase.push("");
                     window.open(startLink, "_blank");
+                    pushCommand();
+                }
+                else if(terminalInput.value.includes("--ping ")) {
+                    terminalDatabase.push("$ " + terminalInput.value);
+                    const pingLink = terminalInput.value.replace(/--ping /g, "")
+                    terminalDatabase.push("You pinged http://" + pingLink);
+                    terminalDatabase.push("");
+
+                    $.ajaxSetup({ cache: false });
+                    $( document ).ready(function() {
+                        var start = new Date().getTime();
+                        $('#junkOne').on('error', function (e) {
+                            var end = new Date().getTime();
+                            $("#timer").html("" + (end-start) + "ms");
+                            setTimeout(() => {
+                                terminalDatabase.push(document.getElementById("timer").innerHTML)
+                                pushCommand();
+                                terminalPrefix.style.display = "inline";
+                                terminalInput.style.display = "inline";
+                                terminalInput.focus();
+                            }, end-start+1000);
+                        }).attr('src', 'http://' + pingLink + '/latency.jpg?d=' + new Date().getTime());
+                    });
+                    terminalPrefix.style.display = "none";
+                    terminalInput.style.display = "none";
                     pushCommand();
                 }
                 else {
