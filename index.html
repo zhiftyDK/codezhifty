@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" type="image/png" href="./img/favicon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <title>CodeZhifty</title>
+    <style>
+        *{
+            scroll-behavior: smooth;
+        }
+        
+        #header{
+            height: 8vh;
+        }
+
+        #homepage{
+            height: 100vh;
+            background-color: rgb(94, 94, 94);
+        }
+
+        #homepage h1{
+            font-size: 100px;
+            text-align: center;
+            padding-top: 200px;
+            color: rgb(31, 31, 31);
+        }
+
+        #projects{
+            height: 100vh;
+            background-color: rgb(151, 151, 151);
+        }
+
+        #projects h1{
+            font-size: 100px;
+            text-align: center;
+            padding-top: 140px;
+            color: rgb(31, 31, 31);
+        }
+
+        #contact{
+            height: 100vh;
+            background-color: rgb(180, 180, 180);
+        }
+
+        #about{
+            height: 100vh;
+            background-color: rgb(200, 200, 200);
+        }
+        
+        #sectionbtn{
+            margin-top: 20px;
+            margin-left: calc(50% - 60px);
+            border: none;
+            background-color: rgb(255, 255, 255);
+            color: black;
+            border-radius: 10px;
+            padding: 20px;
+            font-size: 15px;
+            font-family: 'Pacifico', cursive;
+            cursor: pointer;
+            display: inline;
+        }
+
+        h2{
+            font-size: 70px;
+            text-align: center;
+            padding-top: 70px;
+            color: rgb(31, 31, 31);
+        }
+
+        p{
+            text-align: center;
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+
+        form{
+            margin-left: calc(50% - 80px);
+        }
+
+        form button{
+            padding: 5px;
+            font-size: 15px;
+            border-radius: 5px;
+            border: none;
+            font-family: 'Pacifico', cursive;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#homepage">
+                    <h4 style="color: #ffffff; display: inline;">CodeZhifty</h4>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#homepage">Homepage</a></li>
+                <li><a href="#projects">Project</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="menubtn">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="homepage">
+        <h1>CodeZhifty</h1>
+    </section>
+    <section id="projects">
+        <h1>Projects</h1>
+        <a href="./projects.html" style="text-decoration: none;"><button id="sectionbtn">View Projects</button></a>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <form action="https://formspree.io/f/mpzokerj" method="POST">
+            <label>
+                Your email:
+                <br>
+                <input type="text" name="_replyto">
+            </label>
+            <br>
+            <label>
+                Your message:
+                <br>
+                <textarea name="message"></textarea>
+            </label>
+            <br>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    <section id="about">
+        <h2>About me</h2>
+        <p>My name is Oscar Stausholm i live in Denmark and im a self taught web developer and applications engineer. My hobby is making websites and c# programs, and for now my only work is fiverr.</p>
+    </section>
+    <script src="./script.js"></script>
+</body>
+</html>
