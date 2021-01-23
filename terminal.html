@@ -45,7 +45,6 @@
         const terminalText = document.getElementById("terminalText");
         const terminalPrefix = document.getElementById("terminalPrefix");
         const terminalInput = document.getElementById("terminalInput");
-        const latencyImg = document.getElementById("latencyImg");
         const terminalDatabase = [];
         const scrollingElement = (document.scrollingElement || document.body)
 
@@ -70,7 +69,7 @@
                 //Terminal Commands
                 if(terminalInput.value == "--version") {
                     terminalDatabase.push("$ " + terminalInput.value);
-                    terminalDatabase.push("You are running Zhifty Terminal version 1.2");
+                    terminalDatabase.push("You are running Zhifty Terminal version 0.1");
                     terminalDatabase.push("");
                     pushCommand();
                 } 
