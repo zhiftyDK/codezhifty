@@ -94,7 +94,7 @@
                 else if(terminalInput.value.includes("--ping")) { //pings any website
                     terminalDatabase.push("$ " + terminalInput.value);
                     const pingLink = terminalInput.value.replace(/--ping /g, "")
-                    terminalDatabase.push("You pinged http://" + pingLink);
+                    terminalDatabase.push("Pinging http://" + pingLink + "...");
                     terminalDatabase.push("");
 
                     $.ajaxSetup({ cache: false });
@@ -113,6 +113,16 @@
                     });
                     terminalPrefix.style.display = "none";
                     terminalInput.style.display = "none";
+                    pushCommand();
+                }
+                else if(terminalInput.value.includes("--lookup")) { //get location of ip adress
+                    terminalDatabase.push("$ " + terminalInput.value);
+                    const iplookup = terminalInput.value.replace(/--lookup /g, "")
+                    terminalDatabase.push("Looking up " + iplookup + "...");
+                    terminalDatabase.push("");
+                    setTimeout(() => {
+                        window.open("https://www.ip-tracker.org/locator/ip-lookup.php?ip=" + iplookup);
+                    }, 2000);
                     pushCommand();
                 }
                 else {
