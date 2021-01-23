@@ -40,10 +40,22 @@
         <p id="terminalPrefix">$</p>
         <input type="text" id="terminalInput" autocomplete="off">
     </div>
+    <div id="ipAddress" style="display: none;"></div>
 
     <img id="junkOne" style="display: none;"/>
     <p id="timer" style="display: none;"></p>
     <script>
+        //ipconfig
+        function callback(response){
+            document.getElementById("ipAddress").innerHTML = response.IPv4;
+        }
+
+        $.ajax({
+
+            url:"https://geoip-db.com/jsonp/",
+            dataType:"jsonp"
+        })
+
         //Variables
         const terminal = document.getElementById("terminal");
         const terminalText = document.getElementById("terminalText");
@@ -133,6 +145,12 @@
                     terminalPrefix.style.color = colorType;
                     terminalInput.style.color = colorType;
                     terminalText.style.color = colorType;
+                    pushCommand();
+                }
+                else if(terminalInput.value.includes("--ipconfig")) { //get ip address
+                    terminalDatabase.push("$ " + terminalInput.value);
+                    terminalDatabase.push("IPv4: " + document.getElementById("ipAddress").innerHTML);
+                    terminalDatabase.push("");
                     pushCommand();
                 }
                 else {
