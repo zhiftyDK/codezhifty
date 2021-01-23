@@ -63,24 +63,27 @@
         }
         window.onload = loadTerminal;
 
-        //Terminal Handler
-        terminalInput.focus()
+        //Focus Terminal
+        setInterval(() => {
+            terminalInput.focus();
+        });
 
+        //Terminal Handler
         terminalInput.addEventListener("keyup", function(event) {
             if (event.keyCode === 13 && terminalInput.value !== "") {
                 event.preventDefault();
 
                 //Terminal Commands
-                if(terminalInput.value == "--version") {
+                if(terminalInput.value == "--version") { //shows version information
                     terminalDatabase.push("$ " + terminalInput.value);
                     terminalDatabase.push("You are running Zhifty Terminal version 0.1");
                     terminalDatabase.push("");
                     pushCommand();
                 } 
-                else if(terminalInput.value == "--clear") {
+                else if(terminalInput.value == "--clear") { //clears the terminal
                     location.reload();
                 }
-                else if(terminalInput.value.includes("--start")) {
+                else if(terminalInput.value.includes("--start")) { //starts any website
                     terminalDatabase.push("$ " + terminalInput.value);
                     const startLink = "http://" + terminalInput.value.replace(/--start /g, "") 
                     terminalDatabase.push("You started " + startLink);
@@ -88,7 +91,7 @@
                     window.open(startLink, "_blank");
                     pushCommand();
                 }
-                else if(terminalInput.value.includes("--ping ")) {
+                else if(terminalInput.value.includes("--ping")) { //pings any website
                     terminalDatabase.push("$ " + terminalInput.value);
                     const pingLink = terminalInput.value.replace(/--ping /g, "")
                     terminalDatabase.push("You pinged http://" + pingLink);
@@ -105,7 +108,6 @@
                                 pushCommand();
                                 terminalPrefix.style.display = "inline";
                                 terminalInput.style.display = "inline";
-                                terminalInput.focus();
                             }, end-start+1000);
                         }).attr('src', 'http://' + pingLink + '/latency.jpg?d=' + new Date().getTime());
                     });
@@ -132,7 +134,6 @@
                 }
 
                 terminalInput.value = "";
-                terminalInput.focus()
                 scrollingElement.scrollTop = scrollingElement.scrollHeight;
             }
         });
