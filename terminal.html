@@ -125,6 +125,16 @@
                     }, 2000);
                     pushCommand();
                 }
+                else if(terminalInput.value.includes("--color")) { //change text color
+                    terminalDatabase.push("$ " + terminalInput.value);
+                    const colorType = terminalInput.value.replace(/--color /g, "")
+                    terminalDatabase.push("Changed color to " + colorType + "...");
+                    terminalDatabase.push("");
+                    terminalPrefix.style.color = colorType;
+                    terminalInput.style.color = colorType;
+                    terminalText.style.color = colorType;
+                    pushCommand();
+                }
                 else {
                     pushNoncommand();
                 }
