@@ -72,6 +72,9 @@
             const formatTerminalDatabase = terminalDatabase + "";
             const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
             terminalText.innerHTML = formattedTerminalDatabase;
+            terminalPrefix.style.color = sessionStorage.getItem("color");
+            terminalInput.style.color = sessionStorage.getItem("color");
+            terminalText.style.color = sessionStorage.getItem("color");
         }
         window.onload = loadTerminal;
 
@@ -145,6 +148,7 @@
                     terminalPrefix.style.color = colorType;
                     terminalInput.style.color = colorType;
                     terminalText.style.color = colorType;
+                    sessionStorage.setItem("color", colorType)
                     pushCommand();
                 }
                 else if(terminalInput.value.includes("--ipconfig")) { //get ip address
