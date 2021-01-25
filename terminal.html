@@ -42,7 +42,7 @@
         <p id="terminalText"></p>
 
         <p id="terminalPrefix">$</p>
-        <input type="text" id="terminalInput" autocomplete="off">
+        <input type="text" id="terminalInput" oninput="this.value = this.value.toLowerCase()" autocomplete="off">
     </div>
     <div id="ipAddress" style="display: none;"></div>
 
