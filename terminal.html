@@ -89,7 +89,20 @@
                 event.preventDefault();
 
                 //Terminal Commands
-                if(terminalInput.value == "--version") { //shows version information
+                if(terminalInput.value == "--help") {
+                    terminalDatabase.push("$ " + terminalInput.value);
+                    terminalDatabase.push("Zterm Commands...");
+                    terminalDatabase.push("--version | Shows the version of Zterm youre running");
+                    terminalDatabase.push("--clear | Clears/resets the terminal");
+                    terminalDatabase.push("--ping www.example.com | Ping any website to check the response time");
+                    terminalDatabase.push("--lookup 88.888.888.88 | Lookup any Ip adress");
+                    terminalDatabase.push("--color green | Change color to anything you would like");
+                    terminalDatabase.push("--ipconfig | Get you're Ip adress");
+                    const formatTerminalDatabase = terminalDatabase + "";
+                    const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
+                    terminalText.innerHTML = formattedTerminalDatabase;
+                }
+                else if(terminalInput.value == "--version") { //shows version information
                     terminalDatabase.push("$ " + terminalInput.value);
                     terminalDatabase.push("You are running Zhifty Terminal version 0.1");
                     terminalDatabase.push("");
@@ -106,7 +119,7 @@
                     window.open(startLink, "_blank");
                     pushCommand();
                 }
-                else if(terminalInput.value.includes("--ping")) { //pings any website
+                else if(terminalInput.value.includes("--ping ")) { //pings any website
                     terminalDatabase.push("$ " + terminalInput.value);
                     const pingLink = terminalInput.value.replace(/--ping /g, "")
                     terminalDatabase.push("Pinging http://" + pingLink + "...");
@@ -130,7 +143,7 @@
                     terminalInput.style.display = "none";
                     pushCommand();
                 }
-                else if(terminalInput.value.includes("--lookup")) { //get location of ip adress
+                else if(terminalInput.value.includes("--lookup ")) { //get location of ip adress
                     terminalDatabase.push("$ " + terminalInput.value);
                     const iplookup = terminalInput.value.replace(/--lookup /g, "")
                     terminalDatabase.push("Looking up " + iplookup + "...");
@@ -140,7 +153,7 @@
                     }, 2000);
                     pushCommand();
                 }
-                else if(terminalInput.value.includes("--color")) { //change text color
+                else if(terminalInput.value.includes("--color ")) { //change text color
                     terminalDatabase.push("$ " + terminalInput.value);
                     const colorType = terminalInput.value.replace(/--color /g, "")
                     terminalDatabase.push("Changed color to " + colorType + "...");
