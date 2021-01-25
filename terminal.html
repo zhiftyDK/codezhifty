@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="ztermicon.png" type="image/png" sizes="32x32">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>ZTerm</title>
     <style>
@@ -13,6 +15,8 @@
             background-color: black;
             color: white;
             overflow: hidden;
+            font-family: 'Fira Code', monospace;
+            font-size: 15px;
         }
 
         #terminalPrefix{
@@ -61,7 +65,7 @@
         function loadTerminal() {
             terminalDatabase.push("Zhifty Terminal");
             terminalDatabase.push("The first client side terminal ever!");
-            terminalDatabase.push("Write --help for a list of commands");
+            terminalDatabase.push("Write help for a list of commands");
             terminalDatabase.push("");
             const formatTerminalDatabase = terminalDatabase + "";
             const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
@@ -106,41 +110,41 @@
                 event.preventDefault();
 
                 //Terminal Commands
-                if(terminalInput.value == "--help") {
+                if(terminalInput.value == "help") { //list of commands
                     terminalDatabase.push("$ " + terminalInput.value);
                     terminalDatabase.push("Zterm Commands...");
-                    terminalDatabase.push("--version | Shows the version of Zterm youre running");
-                    terminalDatabase.push("--clear | Clears/resets the terminal");
-                    terminalDatabase.push("--ping www.example.com | Ping any website to check the response time");
-                    terminalDatabase.push("--lookup 88.888.888.88 | Lookup any Ip adress");
-                    terminalDatabase.push("--color green | Change color to anything you would like");
-                    terminalDatabase.push("--ipconfig | Get you're Ip adress");
-                    terminalDatabase.push("--matrix | Display the matrix");
+                    terminalDatabase.push("version | Shows the version of Zterm youre running");
+                    terminalDatabase.push("clear | Clears/resets the terminal");
+                    terminalDatabase.push("ping www.example.com | Ping any website to check the response time");
+                    terminalDatabase.push("lookup 88.888.888.88 | Lookup any IP adress");
+                    terminalDatabase.push("color green | Change color to anything you would like");
+                    terminalDatabase.push("ipconfig | Get you're IP adress");
+                    terminalDatabase.push("matrix | Display the matrix");
                     terminalDatabase.push("");
                     const formatTerminalDatabase = terminalDatabase + "";
                     const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
                     terminalText.innerHTML = formattedTerminalDatabase;
                 }
-                else if(terminalInput.value == "--version") { //shows version information
+                else if(terminalInput.value == "version") { //shows version information
                     terminalDatabase.push("$ " + terminalInput.value);
                     terminalDatabase.push("You are running Zhifty Terminal version 0.1");
                     terminalDatabase.push("");
                     pushCommand();
                 } 
-                else if(terminalInput.value == "--clear") { //clears the terminal
+                else if(terminalInput.value == "clear") { //clears the terminal
                     location.reload();
                 }
-                else if(terminalInput.value.includes("--start")) { //starts any website
+                else if(terminalInput.value.includes("start ")) { //starts any website
                     terminalDatabase.push("$ " + terminalInput.value);
-                    const startLink = "http://" + terminalInput.value.replace(/--start /g, "") 
+                    const startLink = "http://" + terminalInput.value.replace(/start /g, "") 
                     terminalDatabase.push("You started " + startLink);
                     terminalDatabase.push("");
                     window.open(startLink, "_blank");
                     pushCommand();
                 }
-                else if(terminalInput.value.includes("--ping ")) { //pings any website
+                else if(terminalInput.value.includes("ping ")) { //pings any website
                     terminalDatabase.push("$ " + terminalInput.value);
-                    const pingLink = terminalInput.value.replace(/--ping /g, "")
+                    const pingLink = terminalInput.value.replace(/ping /g, "")
                     terminalDatabase.push("Pinging http://" + pingLink + "...");
                     terminalDatabase.push("");
 
@@ -162,9 +166,9 @@
                     terminalInput.style.display = "none";
                     pushCommand();
                 }
-                else if(terminalInput.value.includes("--lookup ")) { //get location of ip adress
+                else if(terminalInput.value.includes("lookup ")) { //get location of ip adress
                     terminalDatabase.push("$ " + terminalInput.value);
-                    const iplookup = terminalInput.value.replace(/--lookup /g, "")
+                    const iplookup = terminalInput.value.replace(/lookup /g, "")
                     terminalDatabase.push("Looking up " + iplookup + "...");
                     terminalDatabase.push("");
                     setTimeout(() => {
@@ -172,9 +176,9 @@
                     }, 2000);
                     pushCommand();
                 }
-                else if(terminalInput.value.includes("--color ")) { //change text color
+                else if(terminalInput.value.includes("color ")) { //change text color
                     terminalDatabase.push("$ " + terminalInput.value);
-                    const colorType = terminalInput.value.replace(/--color /g, "")
+                    const colorType = terminalInput.value.replace(/color /g, "")
                     terminalDatabase.push("Changed color to " + colorType + "...");
                     terminalDatabase.push("");
                     terminalPrefix.style.color = colorType;
@@ -183,13 +187,13 @@
                     sessionStorage.setItem("color", colorType)
                     pushCommand();
                 }
-                else if(terminalInput.value.includes("--ipconfig")) { //get ip address
+                else if(terminalInput.value.includes("ipconfig")) { //get ip address
                     terminalDatabase.push("$ " + terminalInput.value);
                     terminalDatabase.push("IPv4: " + document.getElementById("ipAddress").innerHTML);
                     terminalDatabase.push("");
                     pushCommand();
                 }
-                else if(terminalInput.value.includes("--matrix")) { //launch the matrix
+                else if(terminalInput.value.includes("matrix")) { //launch the matrix
                     terminalDatabase.push("$ " + terminalInput.value);
                     terminalDatabase.push("Launching matrix...");
                     terminalDatabase.push("");
