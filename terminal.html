@@ -194,15 +194,10 @@
                     pushCommand();
                 }
                 else if(terminalInput.value.includes("matrix")) { //launch the matrix
-                    terminalDatabase.push("$ " + terminalInput.value);
-                    terminalDatabase.push("Launching matrix...");
-                    terminalDatabase.push("");
                     sessionStorage.setItem("matrix", "true");
-                    setTimeout(() => {
-                        location.reload();
-                    }, 3000);
                     terminalPrefix.style.display = "none";
                     terminalInput.style.display = "none";
+                    location.reload();
                     pushCommand();
                 }
                 else {
