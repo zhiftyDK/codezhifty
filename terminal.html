@@ -53,6 +53,7 @@
         const terminalPrefix = document.getElementById("terminalPrefix");
         const terminalInput = document.getElementById("terminalInput");
         const matrix = document.getElementById("matrix");
+        const typingSound = document.getElementById("typingSound")
         const terminalDatabase = [];
         const scrollingElement = (document.scrollingElement || document.body)
 
@@ -73,10 +74,16 @@
                 document.body.style.margin = "0px";
                 matrix.style.display = "block";
                 terminal.style.display = "none";
-                sessionStorage.removeItem("matrix");    
+                document.body.addEventListener("keyup", function(event) {
+                    if(event.keyCode === 13 || event.keyCode === 32 || event.keyCode === 116) {
+                        sessionStorage.removeItem("matrix");
+                        location.reload();
+                    }
+                });
             }
         }
         window.onload = loadTerminal;
+        
 
         //Focus Terminal
         setInterval(() => {
