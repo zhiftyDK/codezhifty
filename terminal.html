@@ -44,23 +44,15 @@
 
     <img id="junkOne" style="display: none;"/>
     <p id="timer" style="display: none;"></p>
+    <embed src="https://xie-emily.com/generative_art/green_rain.html" id="matrix" style="position: absolute; width: 105vw; height: 105vh; overflow: hidden; display: none; margin: 0px; padding: 0px;">
+
     <script>
-        //ipconfig
-        function callback(response){
-            document.getElementById("ipAddress").innerHTML = response.IPv4;
-        }
-
-        $.ajax({
-
-            url:"https://geoip-db.com/jsonp/",
-            dataType:"jsonp"
-        })
-
         //Variables
         const terminal = document.getElementById("terminal");
         const terminalText = document.getElementById("terminalText");
         const terminalPrefix = document.getElementById("terminalPrefix");
         const terminalInput = document.getElementById("terminalInput");
+        const matrix = document.getElementById("matrix");
         const terminalDatabase = [];
         const scrollingElement = (document.scrollingElement || document.body)
 
@@ -76,6 +68,13 @@
             terminalPrefix.style.color = sessionStorage.getItem("color");
             terminalInput.style.color = sessionStorage.getItem("color");
             terminalText.style.color = sessionStorage.getItem("color");
+            if(sessionStorage.getItem("matrix") == "true") {
+                document.body.style.padding = "0px";
+                document.body.style.margin = "0px";
+                matrix.style.display = "block";
+                terminal.style.display = "none";
+                sessionStorage.removeItem("matrix");    
+            }
         }
         window.onload = loadTerminal;
 
@@ -83,6 +82,16 @@
         setInterval(() => {
             terminalInput.focus();
         });
+
+        //ipconfig
+        function callback(response){
+            document.getElementById("ipAddress").innerHTML = response.IPv4;
+        }
+
+        $.ajax({
+            url:"https://geoip-db.com/jsonp/",
+            dataType:"jsonp"
+        })
 
         //Terminal Handler
         terminalInput.addEventListener("keyup", function(event) {
@@ -170,6 +179,16 @@
                     terminalDatabase.push("$ " + terminalInput.value);
                     terminalDatabase.push("IPv4: " + document.getElementById("ipAddress").innerHTML);
                     terminalDatabase.push("");
+                    pushCommand();
+                }
+                else if(terminalInput.value.includes("--matrix")) { //launch the matrix
+                    terminalDatabase.push("$ " + terminalInput.value);
+                    terminalDatabase.push("Launching matrix...");
+                    terminalDatabase.push("");
+                    sessionStorage.setItem("matrix", "true");
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
                     pushCommand();
                 }
                 else {
