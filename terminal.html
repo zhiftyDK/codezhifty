@@ -116,9 +116,10 @@
                     terminalDatabase.push("clear | Clears/resets the terminal");
                     terminalDatabase.push("ping www.example.com | Ping any website to check the response time");
                     terminalDatabase.push("lookup 88.888.888.88 | Lookup any IP adress");
-                    terminalDatabase.push("color green | Change color to anything you would like");
+                    terminalDatabase.push("color limegreen | Change color to anything you would like");
                     terminalDatabase.push("ipconfig | Get you're IP adress");
                     terminalDatabase.push("matrix | Display the matrix");
+                    terminalDatabase.push("echo text | Display any message");
                     terminalDatabase.push("");
                     const formatTerminalDatabase = terminalDatabase + "";
                     const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
@@ -202,6 +203,13 @@
                     setInterval(() => {
                         location.reload();
                     }, 3000);
+                    pushCommand();
+                }
+                else if(terminalInput.value.includes("echo ")) { //starts any website
+                    terminalDatabase.push("$ " + terminalInput.value);
+                    const echoMsg = terminalInput.value.replace(/echo /g, "") 
+                    terminalDatabase.push(echoMsg);
+                    terminalDatabase.push("");
                     pushCommand();
                 }
                 else {
