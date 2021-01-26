@@ -77,9 +77,9 @@
                 document.body.style.margin = "0px";
                 matrix.style.display = "block";
                 terminal.style.display = "none";
+                sessionStorage.removeItem("matrix");
                 document.body.addEventListener("keyup", function(event) {
-                    if(event.keyCode === 13 || event.keyCode === 32 || event.keyCode === 116) {
-                        sessionStorage.removeItem("matrix");
+                    if(event.keyCode === 13 || event.keyCode === 32) {
                         location.reload();
                     }
                 });
