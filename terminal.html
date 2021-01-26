@@ -218,6 +218,7 @@
                 function pushNoncommand() {
                     terminalDatabase.push("$ " + terminalInput.value);
                     terminalDatabase.push("'" + terminalInput.value + "' is not recognized as an internal command");
+                    terminalDatabase.push("");
                     const formatTerminalDatabase = terminalDatabase + "";
                     const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
                     terminalText.innerHTML = formattedTerminalDatabase;
