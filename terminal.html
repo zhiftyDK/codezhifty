@@ -120,6 +120,7 @@
                     terminalDatabase.push("ipconfig | Get you're IP adress");
                     terminalDatabase.push("matrix | Display the matrix");
                     terminalDatabase.push("echo text | Display any message");
+                    terminalDatabase.push("calc 5 + 5 | Built in calculator");
                     terminalDatabase.push("");
                     const formatTerminalDatabase = terminalDatabase + "";
                     const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
@@ -209,6 +210,14 @@
                     terminalDatabase.push("$ " + terminalInput.value);
                     const echoMsg = terminalInput.value.replace(/echo /g, "") 
                     terminalDatabase.push(echoMsg);
+                    terminalDatabase.push("");
+                    pushCommand();
+                }
+                else if(terminalInput.value.includes("calc ")) {
+                    const calcString = terminalInput.value.replace(/calc /g, "")
+                    const fixedCalcString = calcString.replace(/,/g, ".")
+                    terminalDatabase.push("$ " + "calc " + fixedCalcString);
+                    terminalDatabase.push(fixedCalcString + " = " + eval(fixedCalcString));
                     terminalDatabase.push("");
                     pushCommand();
                 }
