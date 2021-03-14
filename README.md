@@ -8,5 +8,10 @@ This repo is not for use of others and is claimed by me\
 And any copy of code will most likely be taken down\
 [Copyright (c) 2021 Oscar Juul Stausholm](https://github.com/CodeZhifty/codezhifty/blob/main/LICENSE)
 
+#### Skills
+I mainly do webdev, frontend and backend but also c# and unity.\
+* Html, Css, Javascript and c#
+* NeDB/MongoDB and Firebase
+
 #### Projects
 Here are all my github projects
