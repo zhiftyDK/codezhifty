@@ -136,7 +136,16 @@
             img.addEventListener("mousemove", function(e) {
                 let xAxis = (window.innerWidth / 2 - e.pageX) / 15;
                 let yAxis = (window.innerHeight / 2 - e.pageY) / 15;
-                img.style.transform = `rotateY(${-xAxis}deg) rotateX(${-yAxis}deg)`
+                img.style.transform = `rotateY(${-xAxis}deg) rotateX(${-yAxis}deg)`;
+            });
+
+            img.addEventListener("mouseenter", function(e) {
+                img.style.transition = "none";
+            });
+
+            img.addEventListener("mouseleave", function(e) {
+                img.style.transition = "all 1s ease"
+                img.style.transform = `rotateY(0deg) rotateX(0deg)`;
             });
         }, 3000);
     </script>
