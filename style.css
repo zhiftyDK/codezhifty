@@ -24,7 +24,7 @@ nav{
   color: white;
   letter-spacing: 0px;
   font-size: 25px;
-  font-weight: bolder;
+  font-weight: bolder !important;
   text-decoration: none;
   word-spacing: -5px;
 }
