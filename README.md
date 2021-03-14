@@ -1,7 +1,7 @@
 ## CodeZhifty Portfolio and Projects
 Hey im CodeZhifty aka. Oscar Juul Stausholm\
-Age: 15\
-School: High Technology Exam
+* Age: 15\
+* School: High Technology Exam
 
 ### Copyright (c)
 This repo is not for use of others and is claimed by me\
@@ -15,7 +15,7 @@ I mainly do webdev, frontend and backend but also c# and unity.
 
 ### Projects
 Here are all my github projects\
-[Client side terminal](https://codezhifty.github.io/codezhifty/projects/terminal/)\
-[Voice Assistant (In Progress)](https://codezhifty.github.io/codezhifty/projects/voiceassistant/)\
-[SolarSystem Simulation](https://codezhifty.github.io/codezhifty/projects/solarsystem/)\
-[Audio Visualizer](https://codezhifty.github.io/codezhifty/projects/audiovisualizer/)
+* [Client side terminal](https://codezhifty.github.io/codezhifty/projects/terminal/)\
+* [Voice Assistant (In Progress)](https://codezhifty.github.io/codezhifty/projects/voiceassistant/)\
+* [SolarSystem Simulation](https://codezhifty.github.io/codezhifty/projects/solarsystem/)\
+* [Audio Visualizer](https://codezhifty.github.io/codezhifty/projects/audiovisualizer/)
