@@ -44,7 +44,7 @@ nav{
   text-shadow: 3px 3px 10px #fff;
   text-decoration: none;
   letter-spacing: 3px;
-  font-weight: bold;
+  font-weight: bold !important;
   font-size: 20px;
 }
 

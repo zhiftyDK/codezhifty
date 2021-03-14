@@ -14,14 +14,15 @@
             perspective: 100px;
         }
 
-        .googleHomeImg{
+        .profImg{
             width: 500px;
             transform-style: preserve-3d;
         }
 
-        .googleHomeText{
+        .aboutText{
             color: white;
             font-size: 20px;
+            font-weight: bold;
         }
 
         .anim-container{
@@ -39,7 +40,7 @@
             100%{ transform: translateY(60px); }
         }
 
-        .googleHomeButton{
+        .aboutButton{
             padding: 5px;
             border-radius: 5px;
             border: none;
@@ -48,18 +49,18 @@
             background-color: white;
         }
 
-        .googleHomeButton:hover{
+        .aboutButton:hover{
             background-color: rgb(194, 194, 194);
         }
 
         @media screen and (max-width:1500px){
-            .googleHomeImg{
+            .profImg{
                 width: 400px;
             }
             .anim-container{
                 transform: translateY(40px); 
             }
-            .googleHomeText{
+            .aboutText{
                 font-size: 15px;
             }
             @keyframes infoDiv{
@@ -111,7 +112,7 @@
     </header>
 
     <div class="anim-container">
-        <span class="googleHomeText">
+        <span class="aboutText">
             CodeZhifty who am i?
             <br>
             Im a programmer currently focused on webdev.
@@ -124,14 +125,14 @@
             <strong>Backend:</strong> NeDB/MongoDB and Firebase
             <br>
             <br>
-            <a href="./about.html"><button class="googleHomeButton" style="font-family: 'Source Code Pro', monospace; cursor: pointer;">Read More!</button></a>
+            <a href="./about.html"><button class="aboutButton" style="font-family: 'Source Code Pro', monospace; cursor: pointer;">Read More!</button></a>
         </span>
-        <img src="./professions.png" class="googleHomeImg">
+        <img src="./professions.png" class="profImg">
     </div>
     
     <script>
         setTimeout(() => {
-            const img = document.querySelector(".googleHomeImg");
+            const img = document.querySelector(".profImg");
             img.addEventListener("mousemove", function(e) {
                 let xAxis = (window.innerWidth / 2 - e.pageX) / 15;
                 let yAxis = (window.innerHeight / 2 - e.pageY) / 15;
