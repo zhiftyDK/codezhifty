@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,500&display=swap" rel="stylesheet">
+    <title>Computer Audio Visualizer</title>
+    <style>
+        body{
+            overflow: hidden;
+        }
+
+        .googleHomeText{
+            color: white;
+            font-size: 20px;
+        }
+
+        .anim-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: infoDiv;
+            animation-duration: 3s;
+            transform: translateY(180px);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        @keyframes infoDiv{
+            0%{ transform: translateY(500px); }
+            100%{ transform: translateY(180px); }
+        }
+
+        .googleHomeButton{
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            font-size: 15px;
+        }
+
+        @media screen and (max-width:1500px){
+            .anim-container{
+                transform: translateY(40px); 
+            }
+            .googleHomeText{
+                font-size: 15px;
+            }
+            @keyframes infoDiv{
+                0%{ transform: translateY(500px); }
+                100%{ transform: translateY(40px); }
+            }
+        }
+
+        @media screen and (max-width:768px){
+            .anim-container{
+                display: block;
+                margin: auto;
+                padding: 10px;
+                align-items: unset;
+                justify-content: unset;
+                text-align: center;
+            }
+            body{
+                overflow-y: auto;
+            }
+        }
+
+        .hr{
+            border: none;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="./index.html">
+                    <h4>CodeZhifty</h4>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="#" style="background-color: black; border-radius: 5px; padding: 8px; text-shadow: none;">About</a></li>
+                <li><a href="./projects.html">Projects</a></li>
+                <li><a href="https://github.com/CodeZhifty/codezhifty", target="blank">Github</a></li>
+            </ul>
+            <div class="menubtn">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="anim-container">
+        <span class="googleHomeText">
+            My name is Oscar Stausholm and im 15 years old, attending to a school called<br>
+            high technical exam (HTX), currently studying programming, geographics, biologi<br>
+            and robot technologi. My expertise is Javascript and webdev, I also do some<br>
+            backend with Firebase and MongoDB/NeDB. 
+            <hr class="hr">
+            If you like my website then take a look at my <a href="https://www.youtube.com/channel/UC4LcW0lHrIKFIHGQki8qVMg" style="color: white;" target="_blank">Youtube</a> channel.<br>
+            You could also head over to my <a href="https://github.com/CodeZhifty/codezhifty" style="color: white;" target="_blank">Github</a> repo if youre interested<br>
+            <hr class="hr">
+            This repo including this website and all my projects is <a href="" style="color: white;" target="_blank">MIT Licensed</a>
+        </span>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
