@@ -9,7 +9,7 @@ And any copy of code will most likely be taken down\
 [Copyright (c) 2021 Oscar Juul Stausholm](https://github.com/CodeZhifty/codezhifty/blob/main/LICENSE)
 
 #### Skills
-I mainly do webdev, frontend and backend but also c# and unity.\
+I mainly do webdev, frontend and backend but also c# and unity.
 * Html, Css, Javascript and c#
 * NeDB/MongoDB and Firebase
 
