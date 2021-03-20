@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIA</title>
+    <style>
+        *{
+            margin: 0px;
+        }
+
+        html{
+            background-color: #404040;
+            background-image: url("world.png");
+            background-position: top;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .loginForm{
+            margin-top: 10%;
+            background-color: #737373;
+            margin-left: 40%;
+            margin-right: 40%;
+            text-align: center;
+            border-color: black;
+            border-style: solid;
+            border-radius: 10px;
+        }
+
+        .loginForm input{
+            font-size: 15px;
+            padding: 5px;
+            width: 180px;
+            border-color: black;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .loginForm h1{
+            padding-top: 10px;
+            font-size: 50px;
+            padding-bottom: 15px;
+            font-family:'Courier New', Courier, monospace;
+            letter-spacing: -1px;
+        }
+
+        .loginForm button{
+            margin-bottom: 20px;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="loginForm">
+        <h1>ZIA</h1>
+        <label for="username">Username</label>
+        <br>
+        <input type="text" id="username" autocomplete="off">
+        <br>
+        <br>
+        <label for="password">Password</label>
+        <br>
+        <input type="password" id="password" autocomplete="off">
+        <br>
+        <br>
+        <button id="login">Login</button>
+    </div>
+    
+    <script src="./login.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.18.0/js/md5.js" integrity="sha512-NpfrQEgzOExS1Ax8fjITKrgBFK87lZbBmvWdZk4suiCC4tsHPrTCsulgIA7Z/+CeWhDpEP/f36mNWgZXDKtTAA==" crossorigin="anonymous"></script>
+</body>
+</html>

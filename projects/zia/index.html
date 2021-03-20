@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIA</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html{
+            background-color: #404040;
+        }
+        
+        div h1{
+            text-align: center;
+        }
+
+        .panel{
+            background-color: #737373;
+            height: 87vh;
+            padding: 2vh;
+            margin-bottom: 0vh;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .header{
+            padding: 2vh;
+            color: white;
+            display: flex !important;
+            justify-content: space-between !important;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <p id="name">
+        </p style=""><a onclick="logout()" href=""><p>logout</p></a>
+    </div>
+    
+    <div class="panel">
+        <h1>Zhifty Investigation Agency</h1>
+        <div id="terminal"></div>
+
+        <embed src="https://zhiftydk.github.io/codezhifty/projects/terminal/index.html" type="" style="width: 1200px; height: 650px; border-radius: 20px;">
+    </div>
+
+    <script>
+        function logout(){
+            sessionStorage.removeItem("agent");
+        }
+
+
+        if (sessionStorage.getItem("agent") == null) {
+            window.open("./login.html", "_self");
+        }
+        else {
+            document.getElementById("name").innerHTML = sessionStorage.getItem("agent");
+        }
+    </script>
+</body>
+</html>
