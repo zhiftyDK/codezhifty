@@ -6,25 +6,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Chango&display=swap" rel="stylesheet">
 <style>
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial;
-  font-size: 17px;
+    background-image: url("./background.png");
+    height: 100%; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover !important;
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    font-size: 17px;
 }
 
 #myVideo {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  min-width: 100vw; 
-  min-height: 100vh;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100vw; 
+    min-height: 100vh;
+    display: none;
 }
 
 #pagediv{
+    display: none;
     position: absolute;
     margin-left: auto;
     margin-right: auto;
@@ -34,22 +41,144 @@ body {
     text-align: center;
     font-family: 'Chango', cursive;
     font-size: 50px;
-    font-weight: bol;
+    font-weight: bold;
     -webkit-text-stroke-width: 5px;
     -webkit-text-stroke-color: white;
     color: #414041;
 }
+
+#towndiv{
+    text-align: center;
+}
+
+#header{
+    text-align: center;
+    font-family: 'Chango', cursive;
+    -webkit-text-stroke-width: 5px;
+    -webkit-text-stroke-color: white;
+    font-size: 100px;
+    color: #414041;
+}
+
+#npt{
+    font-size: 50px;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Chango', cursive;
+    color: #414041;
+    margin-top: 3%;
+}
+
+#btn{
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Chango', cursive;
+    color: #414041;
+    margin-top: 3%;
+}
+
+#btn:hover{
+    background-color: rgb(184, 184, 184);
+    cursor: pointer;
+}
+
+.video{
+    display: none;
+}
 </style>
 </head>
 <body>
+<div id="towndiv">
+    <h1 id="header">Weather Visualizer</h1>
+    <input type="text" id="npt">
+    <br>
+    <button id="btn" onclick="runWeather()">Show my weather</button>
+</div>
 
-<video autoplay muted loop id="myVideo">
-  <source src="./videos/Rainy.mp4" type="video/mp4">
-  Your browser does not support HTML5 video.
-</video>
+<div id="myVideo">
+    <video autoplay muted loop id="rainy" class="video">
+        <source src="./videos/Rainy.mp4" type="video/mp4">
+    </video>
+    <video autoplay muted loop id="cloudy" class="video">
+        <source src="./videos/Cloudy.mp4" type="video/mp4">
+    </video>
+    <video autoplay muted loop id="snowy" class="video">
+        <source src="./videos/Snowy.mp4" type="video/mp4">
+    </video>
+    <video autoplay muted loop id="sunny" class="video">
+        <source src="./videos/Sunny.mp4" type="video/mp4">
+    </video>
+    <video autoplay muted loop id="stormy" class="video">
+        <source src="./videos/Stormy.mp4" type="video/mp4">
+    </video>
+</div>
 
 <div id="pagediv">
-    <h1>20 degrees</h1>
+    <h1 id="degreeh1">20 degrees</h1>
 </div>
+
+<script>
+let temp = [];
+let desc = [];
+function runWeather(){
+    const input = document.getElementById("npt");
+    const degreeh1 = document.getElementById("degreeh1");
+    const towndiv = document.getElementById("towndiv");
+    const pagediv = document.getElementById("pagediv");
+    const myvideo = document.getElementById("myVideo");
+    const rainy = document.getElementById("rainy");
+    const cloudy = document.getElementById("cloudy");
+    const snowy = document.getElementById("snowy");
+    const sunny = document.getElementById("sunny");
+    const stormy = document.getElementById("stormy");
+
+    let temp = [];
+    let desc = [];
+    town = input.value;
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + town + "&units=metric&appid=f4e80e2071fcae0bd7c122d2f82fd284")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        var tempValue = data['main']['temp'];
+        var nameValue = data['name'];
+        var descValue = data['weather'][0]['main'];    
+        temp.push(tempValue);
+        desc.push(descValue);
+        console.log(tempValue + " " + descValue)
+    })
+    setTimeout(() => {
+        degreeh1.innerHTML = temp[0] + " degrees";
+        pagediv.style.display = "block";
+        towndiv.style.display = "none";
+        myvideo.style.display = "block";
+        document.body.style.background = "none";
+
+        if(desc[0] == "Clouds" && temp[0] <= 18){
+            cloudy.style.display = "block";
+        }
+        if(desc[0] == "Rain"){
+            rainy.style.display = "block";
+        }
+        if(desc[0] == "Clear"){
+            cloudy.style.display = "block";
+        }
+        if(desc[0] == "Snow"){
+            snowy.style.display = "block";
+        }
+        if(desc[0] == "Extreme"){
+            stormy.style.display = "block";
+        }
+        if(desc[0] == "Clouds" && temp[0] >= 18){
+            sunny.style.display = "block";
+        }
+        if(desc[0] == "Sun"){
+            sunny.style.display = "block";
+        }
+    }, 1000);
+}
+
+</script>
 </body>
 </html>
