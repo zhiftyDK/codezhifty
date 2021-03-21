@@ -7,6 +7,7 @@
 <style>
 * {
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 body {
@@ -92,7 +93,7 @@ body {
 <body>
 <div id="towndiv">
     <h1 id="header">Weather Visualizer</h1>
-    <input type="text" id="npt">
+    <input type="text" id="npt" autocomplete="off" autocorrect="off" autocapitalize="off">
     <br>
     <button id="btn" onclick="runWeather()">Show my weather</button>
 </div>
@@ -179,6 +180,13 @@ function runWeather(){
     }, 1000);
 }
 
+var input = document.getElementById("npt");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("btn").click();
+  }
+});
 </script>
 </body>
 </html>
