@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <title>Audio Visualizer</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <style>
 
         body {
@@ -18,34 +17,38 @@
             bottom: -50px;
             left: -50px;
 
-            background-image: url("background.jpg");
+            background-image: url("background.png");
             background-position: center center;
             background-size: cover;
 
-            filter: blur(15px);
             z-index: -5;
 
         }
 
         .track-title {
-
             position: absolute;
-
-            top: 120px;
+            top: 5%;
             right: 0;
             left: 0;
-
             color: black;
-            font-family: Calibri;
-            font-size: 100px;
+            font-family: cursive;
+            font-size: 120px;
             text-align: center;
-
+            font-weight: bolder;
+            -webkit-text-stroke-width: 5px;
+            -webkit-text-stroke-color: white;
         }
 
         .vz-container{
-            position: relative;
-            margin-top: 0px;
-            height: 500px;
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+            top: 50%;
+            transform: translate(0, -50%);
+            height: 300px;
         }
 
         .visualizer-container {
@@ -59,29 +62,35 @@
         .visualizer-container__bar {
             display: inline-block;
             background-color: black !important;
+            border: white solid;
             margin: 0 2px;
             width: 25px;
         }
 
-        .fileButtonDivider{
-            margin: 3%;
-            border: none;
-        }
-
         .fileButtonContainer{
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
             text-align: center;
+            bottom: 15%;
         }
 
         .fileButton{
             cursor: pointer;
-            border: black solid 2px;
-            border-radius: 20px;
-            padding: 10px;
+            border: white solid 2px;
+            background: black;
+            border-radius: 25px;
+            padding: 15px;
+            color: white;
+            font-size: 20px;
         }
 
         .fileButton:hover{
-            color: white;
-            background: rgb(0, 0, 0);
+            color: rgb(43, 43, 43);
+            background: rgb(180, 180, 180);
+            border-color: black;
         }
     </style>
 
@@ -91,7 +100,7 @@
     <audio id="audio" controls style="display: none;"><source src="" id="src"></audio>
         <div class="track-title">Audio Visualizer</div>
         <div class="vz-container"><div class="visualizer-container"></div></div>
-        <hr class="fileButtonDivider">'
+        <div class="background"></div>
         <div class="fileButtonContainer">
             <label class="fileButton" for="upload">Choose mp3 file</label>
             <input type="file" name="" id="upload" accept=".mp3" style="display: none;">
@@ -99,9 +108,23 @@
 </div>
 
 <script>
+    document.onkeydown = fkey;
+    document.onkeypress = fkey;
+    document.onkeyup = fkey;
+
+    var wasPressed = false;
+
+    function fkey(e) {
+        if (e.keyCode == 116) {
+            e.preventDefault();
+            sessionStorage.removeItem("reload");
+            location.reload();
+        }
+    }
 
     function play() {
-        const NBR_OF_BARS = 50;
+        sessionStorage.setItem("reload", "true");
+        const NBR_OF_BARS = 30;
         const audio = document.querySelector("audio");
         const ctx = new AudioContext();
         const audioSource = ctx.createMediaElementSource(audio);
@@ -117,12 +140,10 @@
         const visualizerContainer = document.querySelector(".visualizer-container");
 
         for( let i = 0; i < NBR_OF_BARS; i++ ) {
-
             const bar = document.createElement("DIV");
             bar.setAttribute("id", "bar" + i);
             bar.setAttribute("class", "visualizer-container__bar");
             visualizerContainer.appendChild(bar);
-
         }
 
         function renderFrame() {
@@ -147,22 +168,27 @@
         }
 
         renderFrame();
-        
+            
         audio.volume = 1.0;
         audio.play();
     };
 
     function handleFiles(event) {
         var files = event.target.files;
-        $("#src").attr("src", URL.createObjectURL(files[0]));
+        document.getElementById("src").setAttribute("src", URL.createObjectURL(files[0]));
         document.getElementById("audio").load();
     }
 
     document.getElementById("upload").addEventListener("change", handleFiles, false);
-    document.getElementById("upload").addEventListener("change", function() {
-        play()
+    document.getElementById("upload").addEventListener("click", function() {
+        if(sessionStorage.getItem("reload") != null){
+            sessionStorage.removeItem("reload");
+            location.reload();
+        }
+        document.getElementById("upload").addEventListener("change", function() {
+            play();
+        });
     });
 </script>
-
 </body>
 </html>

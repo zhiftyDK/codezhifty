@@ -156,27 +156,27 @@ function runWeather(){
         myvideo.style.display = "block";
         document.body.style.background = "none";
 
-        if(desc[0] == "Clouds" && temp[0] <= 18){
-            cloudy.style.display = "block";
-        }
-        if(desc[0] == "Rain"){
-            rainy.style.display = "block";
-        }
-        if(desc[0] == "Clear"){
-            cloudy.style.display = "block";
-        }
-        if(desc[0] == "Snow"){
+        if(desc[0] == "Snow" || temp[0] <= 0){
             snowy.style.display = "block";
         }
-        if(desc[0] == "Extreme"){
+        else if(desc[0] == "Rain"){
+            rainy.style.display = "block";
+        }
+        else if(desc[0] == "Extreme"){
             stormy.style.display = "block";
         }
-        if(desc[0] == "Clouds" && temp[0] >= 18){
+        else if(desc[0] == "Clouds"){
+            if(temp[0] <= 18){
+                cloudy.style.display = "block";
+            }
+            else if(temp[0] >= 18){
+                sunny.style.display = "block";
+            }
+        }
+        else if(desc[0] == "Clear"){
             sunny.style.display = "block";
         }
-        if(desc[0] == "Sun"){
-            sunny.style.display = "block";
-        }
+        
     }, 1000);
 }
 
