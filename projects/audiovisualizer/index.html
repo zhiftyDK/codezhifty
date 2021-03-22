@@ -74,7 +74,7 @@
             left: 0;
             right: 0;
             text-align: center;
-            bottom: 15%;
+            bottom: 10%;
         }
 
         .fileButton{
@@ -92,6 +92,158 @@
             background: rgb(180, 180, 180);
             border-color: black;
         }
+
+        @media screen and (max-width:1850px){
+            #bar49{
+                display: none;
+            }
+            #bar48{
+                display: none;
+            }
+            #bar47{
+                display: none;
+            }
+        }
+        @media screen and (max-width:1750px){
+            #bar46{
+                display: none;
+            }
+            #bar45{
+                display: none;
+            }
+            #bar44{
+                display: none;
+            }
+        }
+        @media screen and (max-width:1650px){
+            #bar43{
+                display: none;
+            }
+            #bar42{
+                display: none;
+            }
+            #bar41{
+                display: none;
+            }
+        }
+        @media screen and (max-width:1550px){
+            #bar40{
+                display: none;
+            }
+            #bar39{
+                display: none;
+            }
+            #bar38{
+                display: none;
+            }
+        }
+        @media screen and (max-width:1450px){
+            #bar37{
+                display: none;
+            }
+            #bar36{
+                display: none;
+            }
+            #bar35{
+                display: none;
+            }
+        }
+        @media screen and (max-width:1350px){
+            #bar34{
+                display: none;
+            }
+            #bar33{
+                display: none;
+            }
+            #bar32{
+                display: none;
+            }
+        }
+        @media screen and (max-width:1250px){
+            #bar31{
+                display: none;
+            }
+            #bar30{
+                display: none;
+            }
+            #bar29{
+                display: none;
+            }
+        }
+        @media screen and (max-width:1150px){
+            #bar28{
+                display: none;
+            }
+            #bar27{
+                display: none;
+            }
+            #bar26{
+                display: none;
+            }
+        }
+        @media screen and (max-width:1050px){
+            .track-title{
+                font-size: 90px;
+            }
+            #bar25{
+                display: none;
+            }
+            #bar24{
+                display: none;
+            }
+            #bar23{
+                display: none;
+            }
+        }
+        @media screen and (max-width:950px){
+            #bar22{
+                display: none;
+            }
+            #bar21{
+                display: none;
+            }
+            #bar20{
+                display: none;
+            }
+        }
+        @media screen and (max-width:850px){
+            #bar19{
+                display: none;
+            }
+            #bar18{
+                display: none;
+            }
+            #bar17{
+                display: none;
+            }
+        }
+        @media screen and (max-width:850px){
+            #bar16{
+                display: none;
+            }
+        }
+        @media screen and (max-width:750px){
+            .track-title{
+                font-size: 60px;
+                -webkit-text-stroke-width: 2px;
+            }
+            #bar15{
+                display: none;
+            }
+            #bar14{
+                display: none;
+            }
+            #bar13{
+                display: none;
+            }
+            #bar12{
+                display: none;
+            }
+            #bar11{
+                display: none;
+            }
+        }
+
     </style>
 
 </head>
@@ -111,9 +263,6 @@
     document.onkeydown = fkey;
     document.onkeypress = fkey;
     document.onkeyup = fkey;
-
-    var wasPressed = false;
-
     function fkey(e) {
         if (e.keyCode == 116) {
             e.preventDefault();
@@ -124,7 +273,7 @@
 
     function play() {
         sessionStorage.setItem("reload", "true");
-        const NBR_OF_BARS = 30;
+        const NBR_OF_BARS = 50;
         const audio = document.querySelector("audio");
         const ctx = new AudioContext();
         const audioSource = ctx.createMediaElementSource(audio);
