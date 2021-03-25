@@ -19,3 +19,5 @@ Here are all my github projects!
 * [Voice Assistant (In Progress)](https://codezhifty.github.io/codezhifty/projects/voiceassistant/)
 * [SolarSystem Simulation](https://codezhifty.github.io/codezhifty/projects/solarsystem/)
 * [Audio Visualizer](https://codezhifty.github.io/codezhifty/projects/audiovisualizer/)
+* [Weather Visualizer](https://codezhifty.github.io/codezhifty/projects/weathervisualizer/)
+* [Zhifty Investigation Agency](https://codezhifty.github.io/codezhifty/projects/zia/)
