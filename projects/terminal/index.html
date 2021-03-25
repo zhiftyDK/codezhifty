@@ -107,6 +107,7 @@
         terminalInput.addEventListener("keyup", function(event) {
             if (event.keyCode === 13 && terminalInput.value !== "") {
                 event.preventDefault();
+                let javascriptCode = "";
 
                 //Terminal Commands
                 if(terminalInput.value == "help") { //list of commands
@@ -213,12 +214,20 @@
                     terminalDatabase.push("");
                     pushCommand();
                 }
-                else if(terminalInput.value.includes("calc ")) {
+                else if(terminalInput.value.includes("calc ")) { //basic calculator
                     const calcString = terminalInput.value.replace(/calc /g, "")
                     const fixedCalcString = calcString.replace(/,/g, ".")
                     terminalDatabase.push("$ " + "calc " + fixedCalcString);
                     terminalDatabase.push(fixedCalcString + " = " + eval(fixedCalcString));
                     terminalDatabase.push("");
+                    pushCommand();
+                }
+                else if(terminalInput.value.includes("run ")) { //run javascript code
+                    const javascriptString = terminalInput.value.replace(/run /g, "")
+                    const fixedJavascriptString = javascriptString.replace(/,/g, ".")
+                    terminalDatabase.push("$ " + "run " + fixedJavascriptString);
+                    terminalDatabase.push("");
+                    javascriptCode = new Function (javascriptString);
                     pushCommand();
                 }
                 else {
@@ -230,6 +239,7 @@
                     const formatTerminalDatabase = terminalDatabase + "";
                     const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
                     terminalText.innerHTML = formattedTerminalDatabase;
+                    javascriptCode();
                 }
 
                 function pushNoncommand() {
