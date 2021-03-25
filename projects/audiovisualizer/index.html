@@ -267,7 +267,7 @@
         if (e.keyCode == 116) {
             e.preventDefault();
             sessionStorage.removeItem("reload");
-            window.reload();
+            location.reload();
         }
     }
 
@@ -332,7 +332,7 @@
     document.getElementById("upload").addEventListener("click", function() {
         if(sessionStorage.getItem("reload") != null){
             sessionStorage.removeItem("reload");
-            window.reload();
+            location.reload();
         }
         document.getElementById("upload").addEventListener("change", function() {
             play();
