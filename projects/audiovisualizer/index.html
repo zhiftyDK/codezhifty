@@ -332,7 +332,7 @@
     document.getElementById("upload").addEventListener("click", function() {
         if(sessionStorage.getItem("reload") != null){
             sessionStorage.removeItem("reload");
-            location.reload();
+            window.reload();
         }
         document.getElementById("upload").addEventListener("change", function() {
             play();
