@@ -38,7 +38,7 @@ body {
     margin-right: auto;
     left: 0;
     right: 0;
-    bottom: 40%;
+    top: 10%;
     text-align: center;
     font-family: 'Chango', cursive;
     font-size: 50px;
@@ -61,13 +61,13 @@ body {
     color: #414041;
 }
 
-#npt{
+.npt{
     font-size: 50px;
     padding: 10px;
     text-align: center;
     font-family: 'Chango', cursive;
     color: #414041;
-    margin-top: 3%;
+    margin-top: 0%;
 }
 
 #btn{
@@ -88,12 +88,44 @@ body {
 .video{
     display: none;
 }
+
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgb(128, 128, 128);
+    color: #414041;
+    font-weight: bolder;
+  width: 100%;
+  padding: 20px;
+  font-family: 'Chango', cursive;
+}
+
+#myBtn {
+    font-family: 'Chango', cursive;
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #67b7ce;
+  color: #fff;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background: #ddd;
+  color: black;
+}
 </style>
 </head>
 <body>
 <div id="towndiv">
     <h1 id="header">Weather Visualizer</h1>
-    <input type="text" id="npt" autocomplete="off" autocorrect="off" autocapitalize="off">
+    <input type="text" class="npt" id="npt" autocomplete="off" autocorrect="off" autocapitalize="off" style="display: inline;">
+    <hr style="border: none; margin: 5px;">
+    <select name="" class="npt" id="snpt" style="font-size: 30px; margin: 0px;">
+        <option value="imperial">Fahrenheit</option>
+        <option value="metric">Celcius</option>
+    </select>
     <br>
     <button id="btn" onclick="runWeather()">Show my weather</button>
 </div>
@@ -114,6 +146,11 @@ body {
     <video autoplay muted loop id="stormy" class="video">
         <source src="./videos/Stormy.mp4" type="video/mp4">
     </video>
+    <div class="content">
+        <h1 id="weatherState">What Weather</h1>
+        <p>Weather is the state of the atmosphere, describing for example the degree to which it is hot or cold, wet or dry, calm or stormy, clear or cloudy. On Earth, most weather phenomena occur in the lowest level of the planet's atmosphere, the troposphere, just below the stratosphere. Weather refers to day-to-day temperature and precipitation activity, whereas climate is the term for the averaging of atmospheric conditions over longer periods of time. When used without qualification, "weather" is generally understood to mean the weather of Earth.</p>
+        <button id="myBtn" onclick="location.reload()">Back</button>
+    </div>
 </div>
 
 <div id="pagediv">
@@ -125,10 +162,12 @@ let temp = [];
 let desc = [];
 function runWeather(){
     const input = document.getElementById("npt");
+    const select = document.getElementById("snpt");
     const degreeh1 = document.getElementById("degreeh1");
     const towndiv = document.getElementById("towndiv");
     const pagediv = document.getElementById("pagediv");
     const myvideo = document.getElementById("myVideo");
+    const state = document.getElementById("weatherState");
     const rainy = document.getElementById("rainy");
     const cloudy = document.getElementById("cloudy");
     const snowy = document.getElementById("snowy");
@@ -137,8 +176,10 @@ function runWeather(){
 
     let temp = [];
     let desc = [];
+    units = select.value;
+    console.log(units);
     town = input.value;
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + town + "&units=metric&appid=f4e80e2071fcae0bd7c122d2f82fd284")
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + town + "&units=" + units + "&appid=f4e80e2071fcae0bd7c122d2f82fd284")
     .then(response => response.json())
     .then(data => {
         console.log(data)
@@ -149,7 +190,8 @@ function runWeather(){
         desc.push(descValue);
         console.log(tempValue + " " + descValue)
     })
-    setTimeout(() => {
+    if(units == "metric"){
+        setTimeout(() => {
         degreeh1.innerHTML = temp[0] + " degrees";
         pagediv.style.display = "block";
         towndiv.style.display = "none";
@@ -158,26 +200,90 @@ function runWeather(){
 
         if(desc[0] == "Snow" || temp[0] <= 0){
             snowy.style.display = "block";
+            state.innerHTML = "Snow";
         }
         else if(desc[0] == "Rain"){
             rainy.style.display = "block";
+            state.innerHTML = "Rain";
         }
-        else if(desc[0] == "Extreme"){
+        else if(desc[0] == "Drizzle"){
+            rainy.style.display = "block";
+            state.innerHTML = "Drizzle";
+        }
+        else if(desc[0] == "Thunderstorm"){
             stormy.style.display = "block";
+            state.innerHTML = "Thunderstorm";
         }
         else if(desc[0] == "Clouds"){
             if(temp[0] <= 18){
                 cloudy.style.display = "block";
+                state.innerHTML = "Clouds";
             }
             else if(temp[0] >= 18){
                 sunny.style.display = "block";
+                state.innerHTML = "Sunny";
             }
         }
         else if(desc[0] == "Clear"){
-            sunny.style.display = "block";
+            if(temp[0] <= 18){
+                sunny.style.display = "block";
+                state.innerHTML = "Clear";
+            }
+            else if(temp[0] >= 18){
+                sunny.style.display = "block";
+                state.innerHTML = "Sunny";
+            }
         }
         
-    }, 1000);
+        }, 1000);
+    }
+    else{
+        setTimeout(() => {
+        degreeh1.innerHTML = temp[0] + " degrees";
+        pagediv.style.display = "block";
+        towndiv.style.display = "none";
+        myvideo.style.display = "block";
+        document.body.style.background = "none";
+
+        if(desc[0] == "Snow" || temp[0] <= 0){
+            snowy.style.display = "block";
+            state.innerHTML = "Snow";
+        }
+        else if(desc[0] == "Rain"){
+            rainy.style.display = "block";
+            state.innerHTML = "Rain";
+        }
+        else if(desc[0] == "Drizzle"){
+            rainy.style.display = "block";
+            state.innerHTML = "Drizzle";
+        }
+        else if(desc[0] == "Thunderstorm"){
+            stormy.style.display = "block";
+            state.innerHTML = "Thunderstorm";
+        }
+        else if(desc[0] == "Clouds"){
+            if(temp[0] <= 64.4){
+                cloudy.style.display = "block";
+                state.innerHTML = "Clouds";
+            }
+            else if(temp[0] >= 64.4){
+                sunny.style.display = "block";
+                state.innerHTML = "Sunny";
+            }
+        }
+        else if(desc[0] == "Clear"){
+            if(temp[0] <= 64.4){
+                sunny.style.display = "block";
+                state.innerHTML = "Clear";
+            }
+            else if(temp[0] >= 64.4){
+                sunny.style.display = "block";
+                state.innerHTML = "Sunny";
+            }
+        }
+        
+        }, 1000);
+    }
 }
 
 var input = document.getElementById("npt");
