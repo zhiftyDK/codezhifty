@@ -122,6 +122,7 @@
                     terminalDatabase.push("matrix | Display the matrix");
                     terminalDatabase.push("echo text | Display any message");
                     terminalDatabase.push("calc 5 + 5 | Built in calculator");
+                    terminalDatabase.push("run alert('text') | Run native javascript code");
                     terminalDatabase.push("");
                     const formatTerminalDatabase = terminalDatabase + "";
                     const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
@@ -129,7 +130,7 @@
                 }
                 else if(terminalInput.value == "version") { //shows version information
                     terminalDatabase.push("$ " + terminalInput.value);
-                    terminalDatabase.push("You are running Zhifty Terminal version 0.1");
+                    terminalDatabase.push("You are running Zhifty Terminal version 0.8");
                     terminalDatabase.push("");
                     pushCommand();
                 } 
