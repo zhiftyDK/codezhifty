@@ -246,7 +246,7 @@
         <!-- <div class="vz-container"><div class="visualizer-container"></div></div> -->
         <div class="background"></div>
         <div class="fileButtonContainer">
-            <label class="fileButton" for="upload">Choose mp3 file</label>
+            <label class="fileButton" id="fileButton" for="upload">Choose mp3 file</label>
             <input type="file" name="" id="upload" accept=".mp3" style="display: none;">
         </div>
 </div>
@@ -297,8 +297,8 @@
         for(var i = 0; i < bars; i++){    
             // style the background
             var gradient = canvasCtx.createLinearGradient(0,0,0,canvas.height);
-            gradient.addColorStop(0,"rgba(" + frequencyData[i] + ", 255, 100, 1)");
-            gradient.addColorStop(1,"rgba(255, 255, 255, 1)");
+            gradient.addColorStop(0,"rgba(" + frequencyData[i] + ", 230, 100, 1)");
+            gradient.addColorStop(1,"rgba(230, 230, 230, 1)");
             canvasCtx.fillStyle = gradient;
             canvasCtx.fillRect(0,0,canvas.width,canvas.height); 
         }
@@ -348,6 +348,8 @@
         sessionStorage.setItem("reload", "true");
         audio.volume = 1.0;
         audio.play();
+        document.getElementById("upload").style.display = "none";
+        document.getElementById("fileButton").style.display = "none";
     };
 
     function handleFiles(event) {
