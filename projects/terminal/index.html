@@ -228,19 +228,33 @@
                     const fixedJavascriptString = javascriptString.replace(/,/g, ".")
                     terminalDatabase.push("$ " + "run " + fixedJavascriptString);
                     terminalDatabase.push("");
+                    sessionStorage.setItem("runJsCode", "run");
                     javascriptCode = new Function (javascriptString);
+                    pushCommand();
+                }
+                else if(terminalInput.value.includes("nrplt ")) { //get location of ip adress
+                    terminalDatabase.push("$ " + terminalInput.value);
+                    const nrplt = terminalInput.value.replace(/nrplt /g, "")
+                    terminalDatabase.push("Checking numberplate " + nrplt + "...");
+                    terminalDatabase.push("");
+                    setTimeout(() => {
+                        window.open("https://www.tjekbil.dk/nummerplade/" + nrplt + "/overblik");
+                    }, 2000);
                     pushCommand();
                 }
                 else {
                     pushNoncommand();
                 }
-
+                
                 //Terminal DB Push
                 function pushCommand() {
                     const formatTerminalDatabase = terminalDatabase + "";
                     const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
                     terminalText.innerHTML = formattedTerminalDatabase;
-                    javascriptCode();
+                    if(sessionStorage.getItem("runJsCode") != null){
+                        javascriptCode();
+                        sessionStorage.removeItem("runJsCode");
+                    }
                 }
 
                 function pushNoncommand() {
