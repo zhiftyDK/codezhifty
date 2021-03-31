@@ -86,11 +86,20 @@
         }
 
         firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                document.getElementById("name").innerHTML = "Logged in as " + user.email;
-            } else {
+            if(user){
+                if(user.displayName == null){
+                    const displayName = prompt("Please enter your name");
+                    user.updateProfile({
+                        displayName: displayName
+                    });
+                    location.reload();
+                }
+                document.getElementById("name").innerHTML = "Welcome " + user.displayName;
+            }
+            else {
                 window.open("login.html", "_self")
             }
+            
         });
     </script>
 </body>

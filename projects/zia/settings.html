@@ -68,6 +68,7 @@
         .linkBtn{
             padding: 5px;
             border-radius: 15px;
+            cursor: pointer;
         }
 
         .link{
@@ -90,8 +91,7 @@
         <a href="./index.html" class="headerh1"><h1>Zhifty Investigation Agency</h1></a>
         <div id="terminal"></div>
         <div class="allLinks">
-            <p class="linkPos"><button class="linkBtn"><a href="./terminal.html" class="link">Terminal</a></button></p>
-            <p class="linkPos"><button class="linkBtn"><a href="./settings.html" class="link">Settings</a></button></p>
+            <p class="linkPos"><button class="linkBtn link" onclick="changeName()">Change name</button></p>
         </div>
     </div>
 
@@ -113,12 +113,11 @@
 
         firebase.auth().onAuthStateChanged(function(user) {
             if(user){
-                
                 if(user.displayName == null){
                     const displayName = prompt("Please enter your name");
                     user.updateProfile({
                         displayName: displayName
-                    }); 
+                    });
                     location.reload();
                 }
                 document.getElementById("name").innerHTML = "Welcome " + user.displayName;
@@ -126,8 +125,16 @@
             else {
                 window.open("login.html", "_self")
             }
-            
         });
+
+        function changeName(){
+            const user = firebase.auth().currentUser;
+            const displayName = prompt("Please enter your name");
+            user.updateProfile({
+                displayName: displayName
+            });
+            location.reload();
+        }
     </script>
 </body>
 </html>
