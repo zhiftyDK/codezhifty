@@ -1,44 +1,31 @@
-const username = document.getElementById("username");
+const email = document.getElementById("email");
 const password = document.getElementById("password");
 const login = document.getElementById("login");
+// username.focus();
 
-if (sessionStorage.getItem("agent") !== null) {
-    window.open("./index.html", "_self")
+const firebaseConfig = {
+    apiKey: "AIzaSyAI-cXtii8WbqM-LWuJLW4O4DmXNvD3fjQ",
+    authDomain: "zhifty-investigation-agency.firebaseapp.com",
+    projectId: "zhifty-investigation-agency",
+    storageBucket: "zhifty-investigation-agency.appspot.com",
+    messagingSenderId: "834729099624",
+    appId: "1:834729099624:web:1b18d00dfbf7d111ee16dd"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+
+login.addEventListener("click", function(){signIn()});
+function signIn() {
+    const promise = firebase.auth().signInWithEmailAndPassword(email.value, md5(password.value));
+    promise.catch(e => alert(e.message));
+    console.log("Signed In");
 }
 
-username.focus();
-
-document.getElementById("login").addEventListener("click", () => {
-    if (username.value == "c12-marine" && md5(password.value) == "b2239cc71b97ef89c50ec3778a4f32fa") {
-        sessionStorage.setItem("agent", "Welcome agent " + username.value);
-        username.value = "";
-        password.value = "";
-        window.open("./index.html", "_self");
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        window.open("index.html", "_self")
+    } else {
+      // No user is signed in.
     }
-    else if (username.value == "user123" && md5(password.value) == "32250170a0dca92d53ec9624f336ca24") {
-        sessionStorage.setItem("agent", "Welcome agent " + username.value);
-        username.value = "";
-        password.value = "";
-        window.open("./index.html", "_self");
-    }
-    else {
-        username.value = "";
-        password.value = "";
-        alert("Incorrect username or password!");
-        username.focus();
-    }
-});
-
-username.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        login.click();
-    }
-});
-
-password.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        login.click();
-    }
-});
+  });
