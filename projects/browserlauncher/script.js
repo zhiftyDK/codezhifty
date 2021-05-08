@@ -2,6 +2,15 @@ function downloadPopup(){
     
 }
 
+function addGame(){
+    const allGames = document.querySelectorAll('.allGames');
+    for (var i = 0; i < allGames.length; i++) {
+        allGames[i].style.display = "none";
+    }
+
+    document.querySelector('.gameAdder').style.display = "block";
+}
+
 function harrypotter1(){
     const allGames = document.querySelectorAll('.allGames');
     for (var i = 0; i < allGames.length; i++) {

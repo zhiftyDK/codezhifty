@@ -15,7 +15,9 @@
                 <a href="./index.html" style="text-decoration: none;"><h2 style="color: #f8f9fa;">BrowserLauncher</h2></a>
             </div>
             <div class="col-6 text-end">
-                
+                <a href="javascript:addGame()">
+                    <button class="btn btn-light">Add Game 🕹️</button>
+                </a>
             </div>
         </div>
     </div>
@@ -50,7 +52,46 @@
 
             </div>
             <div class="col-10 text-center hide-scroll-bar" style="height: 92vh; overflow-y: scroll;">
-                
+
+                <!-- Game Adder -->
+                <div class="container-fluid m-5 gameAdder allGames" style="display: none;">
+                    <div class="row align-items-center">
+                        <div class="col-11 text-center">
+                            <h1>Add your own game to the launcher</h1>
+                            
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-11">
+                            <label for="gameName">Game Name</label>
+                            <br>
+                            <input type="text" id="gameName" style="width: 200px;">
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-11">
+                            <label for="gamePath">Game Path</label>
+                            <br>
+                            <input type="text" id="gamePath" style="width: 400px;">
+                        </div>
+                    </div>
+                    <div class="row m-4">
+                        <div class="col-11">
+                            <a href="harrypotter1:">
+                                <button class="btn btn-success border-light" style="padding-right: 30px; padding-left: 30px; padding-top: 10px; padding-bottom: 10px;">Play</button>
+                            </a>
+                            <a href="http://www.mediafire.com/file/kfx2978uqxtyhiv/HP1.exe" onclick="downloadPopup()">
+                                <button class="btn btn-dark border-light" style="padding-right: 30px; padding-left: 30px; padding-top: 10px; padding-bottom: 10px;">Install</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row m-4">
+                        <div class="col-11">
+                            
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Harry Potter and the philosophers stone game -->
                 <div class="container-fluid m-5 hp1 allGames" style="display: none;">
                     <div class="row align-items-center">
@@ -64,7 +105,7 @@
                             <a href="harrypotter1:">
                                 <button class="btn btn-success border-light" style="padding-right: 30px; padding-left: 30px; padding-top: 10px; padding-bottom: 10px;">Play</button>
                             </a>
-                            <a href="http://www.mediafire.com/file/kfx2978uqxtyhiv/HP1.exe" onclick="downloadPopup()">
+                            <a href="#" onclick="downloadPopup()">
                                 <button class="btn btn-dark border-light" style="padding-right: 30px; padding-left: 30px; padding-top: 10px; padding-bottom: 10px;">Install</button>
                             </a>
                         </div>
