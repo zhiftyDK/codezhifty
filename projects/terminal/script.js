@@ -122,6 +122,12 @@ terminalInput.addEventListener("keyup", function(event) {
             terminalInput.style.display = "none";
             pushCommand();
         }
+        else if(terminalInput.value.endsWith("ping")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to enter a website url after "ping"');
+            terminalDatabase.push("");
+            pushCommand();
+        }
         else if(terminalInput.value.includes("lookup ")) { //get location of ip adress
             terminalDatabase.push("$ " + terminalInput.value);
             const iplookup = terminalInput.value.replace(/lookup /g, "")
@@ -130,6 +136,12 @@ terminalInput.addEventListener("keyup", function(event) {
             setTimeout(() => {
                 window.open("https://www.ip-tracker.org/locator/ip-lookup.php?ip=" + iplookup);
             }, 2000);
+            pushCommand();
+        }
+        else if(terminalInput.value.endsWith("lookup")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to enter an IP adress after "lookup"');
+            terminalDatabase.push("");
             pushCommand();
         }
         else if(terminalInput.value.includes("color ")) { //change text color
@@ -141,6 +153,12 @@ terminalInput.addEventListener("keyup", function(event) {
             terminalInput.style.color = colorType;
             terminalText.style.color = colorType;
             sessionStorage.setItem("color", colorType);
+            pushCommand();
+        }
+        else if(terminalInput.value.endsWith("color")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to define a color after "color"');
+            terminalDatabase.push("");
             pushCommand();
         }
         else if(terminalInput.value.includes("ipconfig")) { //get ip address
@@ -168,11 +186,23 @@ terminalInput.addEventListener("keyup", function(event) {
             terminalDatabase.push("");
             pushCommand();
         }
+        else if(terminalInput.value.endsWith("echo")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to define a message after "echo"');
+            terminalDatabase.push("");
+            pushCommand();
+        }
         else if(terminalInput.value.includes("calc ")) { //basic calculator
             const calcString = terminalInput.value.replace(/calc /g, "")
             const fixedCalcString = calcString.replace(/,/g, ".")
             terminalDatabase.push("$ " + "calc " + fixedCalcString);
             terminalDatabase.push(fixedCalcString + " = " + eval(fixedCalcString));
+            terminalDatabase.push("");
+            pushCommand();
+        }
+        else if(terminalInput.value.endsWith("calc")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to enter numbers after "calc"');
             terminalDatabase.push("");
             pushCommand();
         }
@@ -185,7 +215,13 @@ terminalInput.addEventListener("keyup", function(event) {
             javascriptCode = new Function (javascriptString);
             pushCommand();
         }
-        else if(terminalInput.value.includes("nrplt ")) { //get location of ip adress
+        else if(terminalInput.value.endsWith("run")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to define any sort of native js after "run"');
+            terminalDatabase.push("");
+            pushCommand();
+        }
+        else if(terminalInput.value.includes("nrplt ")) { //Lookup any danish numberplate
             terminalDatabase.push("$ " + terminalInput.value);
             const nrplt = terminalInput.value.replace(/nrplt /g, "")
             terminalDatabase.push("Checking numberplate " + nrplt + "...");
@@ -193,6 +229,12 @@ terminalInput.addEventListener("keyup", function(event) {
             setTimeout(() => {
                 window.open("https://www.tjekbil.dk/nummerplade/" + nrplt + "/overblik");
             }, 2000);
+            pushCommand();
+        }
+        else if(terminalInput.value.endsWith("nrplt" || "nrplt ")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to define the plate numbers after "nrplt"');
+            terminalDatabase.push("");
             pushCommand();
         }
         else if(terminalInput.value.includes("exerunner.create ")) { //Create AKA. register any executable for exerunner
@@ -223,6 +265,12 @@ terminalInput.addEventListener("keyup", function(event) {
             terminalDatabase.push("");
             pushCommand();
         }
+        else if(terminalInput.value.endsWith("exerunner.create")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to define the executables path after "exerunner.create"');
+            terminalDatabase.push("");
+            pushCommand();
+        }
         else if(terminalInput.value.includes("exerunner.launch ")) { //Launch any exerunner registered executeable
             terminalDatabase.push("$ " + terminalInput.value);
             const prgmName = terminalInput.value.replace(/exerunner.launch /g, "");
@@ -233,6 +281,13 @@ terminalInput.addEventListener("keyup", function(event) {
             setTimeout(() => {
                 window.open(prgmName + ":", "_self");
             }, 2000);
+        }
+        else if(terminalInput.value.endsWith("exerunner.launch")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to define one of the registered executable names after "exerunner.launch"');
+            terminalDatabase.push('You can find a list of registered executables by using "exerunner.registry"')
+            terminalDatabase.push("");
+            pushCommand();
         }
         else if(terminalInput.value.includes("exerunner.registry")) { //List of all exerunner registered executables
             terminalDatabase.push("$ " + terminalInput.value);
