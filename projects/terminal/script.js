@@ -62,6 +62,7 @@ terminalInput.addEventListener("keyup", function(event) {
             terminalDatabase.push("Zterm Commands...");
             terminalDatabase.push("version | Shows the version of Zterm youre running");
             terminalDatabase.push("clear | Clears/resets the terminal");
+            terminalDatabase.push("start www.example.com | Start/open any webpage/url")
             terminalDatabase.push("ping www.example.com | Ping any website to check the response time");
             terminalDatabase.push("lookup 88.888.888.88 | Lookup any IP adress");
             terminalDatabase.push("color limegreen | Change color to anything you would like");
@@ -76,6 +77,7 @@ terminalInput.addEventListener("keyup", function(event) {
             terminalDatabase.push("exerunner.registry | List of all exerunner registered executables");
             terminalDatabase.push("exerunner.clear | Clear list of all exerunner registered executables");
             terminalDatabase.push("");
+            terminalDatabase.push("");
             const formatTerminalDatabase = terminalDatabase + "";
             const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
             terminalText.innerHTML = formattedTerminalDatabase;
@@ -89,12 +91,24 @@ terminalInput.addEventListener("keyup", function(event) {
         else if(terminalInput.value == "clear") { //clears the terminal
             location.reload();
         }
+        else if(terminalInput.value.endsWith("start") || terminalInput.value.startsWith("start") && terminalInput.value.endsWith(" ")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to enter a website url after "start"');
+            terminalDatabase.push("");
+            pushCommand();
+        }
         else if(terminalInput.value.includes("start ")) { //starts any website
             terminalDatabase.push("$ " + terminalInput.value);
             const startLink = "http://" + terminalInput.value.replace(/start /g, "") 
             terminalDatabase.push("You started " + startLink);
             terminalDatabase.push("");
             window.open(startLink, "_blank");
+            pushCommand();
+        }
+        else if(terminalInput.value.endsWith("ping") || terminalInput.value.startsWith("ping") && terminalInput.value.endsWith(" ")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to enter a website url after "ping"');
+            terminalDatabase.push("");
             pushCommand();
         }
         else if(terminalInput.value.includes("ping ")) { //pings any website
@@ -122,9 +136,9 @@ terminalInput.addEventListener("keyup", function(event) {
             terminalInput.style.display = "none";
             pushCommand();
         }
-        else if(terminalInput.value.endsWith("ping")){
+        else if(terminalInput.value.endsWith("lookup") || terminalInput.value.startsWith("lookup") && terminalInput.value.endsWith(" ")){
             terminalDatabase.push("$ " + terminalInput.value);
-            terminalDatabase.push('You need to enter a website url after "ping"');
+            terminalDatabase.push('You need to enter an IP adress after "lookup"');
             terminalDatabase.push("");
             pushCommand();
         }
@@ -138,9 +152,9 @@ terminalInput.addEventListener("keyup", function(event) {
             }, 2000);
             pushCommand();
         }
-        else if(terminalInput.value.endsWith("lookup")){
+        else if(terminalInput.value.endsWith("color") || terminalInput.value.startsWith("color") && terminalInput.value.endsWith(" ")){
             terminalDatabase.push("$ " + terminalInput.value);
-            terminalDatabase.push('You need to enter an IP adress after "lookup"');
+            terminalDatabase.push('You need to define a color after "color"');
             terminalDatabase.push("");
             pushCommand();
         }
@@ -153,12 +167,6 @@ terminalInput.addEventListener("keyup", function(event) {
             terminalInput.style.color = colorType;
             terminalText.style.color = colorType;
             sessionStorage.setItem("color", colorType);
-            pushCommand();
-        }
-        else if(terminalInput.value.endsWith("color")){
-            terminalDatabase.push("$ " + terminalInput.value);
-            terminalDatabase.push('You need to define a color after "color"');
-            terminalDatabase.push("");
             pushCommand();
         }
         else if(terminalInput.value.includes("ipconfig")) { //get ip address
@@ -179,16 +187,16 @@ terminalInput.addEventListener("keyup", function(event) {
             }, 3000);
             pushCommand();
         }
+        else if(terminalInput.value.endsWith("echo") || terminalInput.value.startsWith("echo") && terminalInput.value.endsWith(" ")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to define a message after "echo"');
+            terminalDatabase.push("");
+            pushCommand();
+        }
         else if(terminalInput.value.includes("echo ")) { //Echoing any message
             terminalDatabase.push("$ " + terminalInput.value);
             const echoMsg = terminalInput.value.replace(/echo /g, "");
             terminalDatabase.push(echoMsg);
-            terminalDatabase.push("");
-            pushCommand();
-        }
-        else if(terminalInput.value.endsWith("echo")){
-            terminalDatabase.push("$ " + terminalInput.value);
-            terminalDatabase.push('You need to define a message after "echo"');
             terminalDatabase.push("");
             pushCommand();
         }
@@ -237,6 +245,12 @@ terminalInput.addEventListener("keyup", function(event) {
             terminalDatabase.push("");
             pushCommand();
         }
+        else if(terminalInput.value.endsWith("exerunner.create") || terminalInput.value.startsWith("exerunner.create") && terminalInput.value.endsWith(" ")){
+            terminalDatabase.push("$ " + terminalInput.value);
+            terminalDatabase.push('You need to define the executables path after "exerunner.create"');
+            terminalDatabase.push("");
+            pushCommand();
+        }
         else if(terminalInput.value.includes("exerunner.create ")) { //Create AKA. register any executable for exerunner
             terminalDatabase.push("$ " + terminalInput.value);
             const path = terminalInput.value.replace(/exerunner.create /g, "");
@@ -262,12 +276,6 @@ terminalInput.addEventListener("keyup", function(event) {
             document.body.removeChild(element);
 
             terminalDatabase.push('Executable runner file "' + fixedName + '" is created!');
-            terminalDatabase.push("");
-            pushCommand();
-        }
-        else if(terminalInput.value.endsWith("exerunner.create")){
-            terminalDatabase.push("$ " + terminalInput.value);
-            terminalDatabase.push('You need to define the executables path after "exerunner.create"');
             terminalDatabase.push("");
             pushCommand();
         }
@@ -310,9 +318,6 @@ terminalInput.addEventListener("keyup", function(event) {
         }
         else {
             pushNoncommand();
-        }
-        function download() {
-            
         }
         
         //Terminal DB Push
