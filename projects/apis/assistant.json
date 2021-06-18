@@ -1,12 +1,10 @@
-{
-    "Commands": [
-        {
-            "question": "hello",
-            "answer": "Hello  sir how are you!"
-        },
-        {
-            "question": "weather",
-            "answer": "The weather is great!"
-        }
-    ]
-}
+[
+    {
+        "question": "hello",
+        "answer": "Hello  sir how are you!"
+    },
+    {
+        "question": "weather",
+        "answer": "The weather is great!"
+    }
+]
