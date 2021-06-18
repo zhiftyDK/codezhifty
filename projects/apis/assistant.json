@@ -1,4 +1,7 @@
-[
-    hello,
-    hey
-]
+{
+    "Commands": [
+        {
+            "hello": "Hello sir how are you!"
+        }
+    ]
+}
