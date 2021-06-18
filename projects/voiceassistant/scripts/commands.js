@@ -21,7 +21,7 @@ const musicArray = [shoottothrill, backinblack];
 const music = Math.floor(Math.random() * musicArray.length);
 
 //Bootup Sequence
-//const count = 0;
+//let count = 0;
 //if(count == 0) {
 //    speechSynthesis.speak(new SpeechSynthesisUtterance("Engaging boot sequence"))
 //    setTimeout(2000);
