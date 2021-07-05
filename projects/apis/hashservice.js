@@ -1,7 +1,7 @@
 //Add Md5
-let md5 = document.createElement("script");
+const md5 = document.createElement("script");
 md5.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.18.0/js/md5.js");
-document.body.appendChild(md5);
+document.head.appendChild(md5);
 
 //Hashfunction
 function hash(input){
