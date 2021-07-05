@@ -4,6 +4,14 @@
         "answer": "Hello sir how are you!"
     },
     {
+        "question": "how are you",
+        "answer": "I am great thanks"
+    },
+    {
+        "question": "time",
+        "answer": "Cmd/console.log('hey')"
+    },
+    {
         "question": "weather",
         "answer": "The weather is great!"
     }
