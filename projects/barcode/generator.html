@@ -23,7 +23,7 @@
                 <br>
                 <div class="d-flex justify-content-center">
                     <div class="input-group" style="width: 30vw;">
-                        <select class="form-select" style="border-color: black;" id="barcodeFormat" aria-label="Example select with button addon">
+                        <select class="form-select" style="border-color: black;" id="barcodeFormat" aria-label="Example select with button addon" onchange="if(document.getElementById('barcodeValue').value != ''){generateBarcode()}">
                             <option value="code128">CODE128</option>
                             <option value="code39">CODE39</option>
                             <option value="itf">ITF</option>
@@ -34,9 +34,14 @@
                     </div>
                 </div>
                 <div id="errorMessage" class="form-text" style="display: none; color: red;"></div>
-                <div class="p-2">
-                    <input type="checkbox" id="displayValueCheckbox" class="form-check-input mt-1">
+                <div class="p-2 d-flex align-items-center justify-content-center">
+                    <input type="checkbox" id="displayValueCheckbox" class="form-check-input mb-1" onchange="if(document.getElementById('barcodeValue').value != ''){generateBarcode()}">
+                    <hr style="width: 5px; background-color: white;">
                     <label for="displayValueCheckbox">Display Barcode Value</label>
+                    <hr style="width: 10px; background-color: white;">
+                    <input type="number" placeholder="Height" class="form-control d-inline p-1" id="barcodeHeightInput" style="width: 5vw;" onchange="if(document.getElementById('barcodeValue').value != ''){generateBarcode()}">
+                    <hr style="width: 10px; background-color: white;">
+                    <input type="number" placeholder="Width" class="form-control d-inline p-1" id="barcodeWidthInput" style="width: 5vw;" onchange="if(document.getElementById('barcodeValue').value != ''){generateBarcode()}">
                 </div>
             </div>
             <div class="col-12 text-center">
@@ -54,22 +59,12 @@
     <script>
         function generateBarcode() {
             try {
-                if(document.getElementById("displayValueCheckbox").checked){
-                    JsBarcode("#barcode", document.getElementById("barcodeValue").value, {
-                        format: document.getElementById("barcodeFormat").value,
-                        width: 2,
-                        height: 100,
-                        displayValue: true
-                    });
-                }
-                else {
-                    JsBarcode("#barcode", document.getElementById("barcodeValue").value, {
-                        format: document.getElementById("barcodeFormat").value,
-                        width: 2,
-                        height: 100,
-                        displayValue: false
-                    });
-                }
+                JsBarcode("#barcode", document.getElementById("barcodeValue").value, {
+                    format: document.getElementById("barcodeFormat").value,
+                    height: document.getElementById("barcodeHeightInput").value || "110",
+                    width: document.getElementById("barcodeWidthInput").value || "2",
+                    displayValue: document.getElementById("displayValueCheckbox").checked
+                });
                 document.getElementById("errorMessage").style.display = "none";
                 document.getElementById("barcodeValue").style.borderColor = "black";
             } catch (error) {
@@ -86,6 +81,10 @@
                 else if(error.includes("å")) {
                     console.error('The letter "å" is not valid!');
                     document.getElementById("errorMessage").innerHTML = 'The letter "å" is not valid!';
+                }
+                else if(document.getElementById("barcodeValue").value == "") {
+                    console.error('You need to enter a value!');
+                    document.getElementById("errorMessage").innerHTML = 'You need to enter a value!';
                 }
                 else {
                     const prosessedBarcode = error.slice(0, error.length - 1) + "a barcode";
