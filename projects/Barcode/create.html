@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ba59337863.js" crossorigin="anonymous"></script>
+    <script src="../apis/svgtopng.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row p-3 d-flex justify-content-center">
+            <h1 class="text-center"><u>Barcode Generator</u></h1>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row d-flex align-items-center justify-content-center" style="height: 70vh;">
+            <div class="col-12 text-center">
+                <label class="form-label" for="barcodeValue">Barcode Format & Value <i class="fas fa-pen"></i></label>
+                <br>
+                <div class="d-flex justify-content-center">
+                    <div class="input-group" style="width: 30vw;">
+                        <select class="form-select" style="border-color: black;" id="barcodeFormat" aria-label="Example select with button addon">
+                            <option value="code128">CODE128</option>
+                            <option value="code39">CODE39</option>
+                            <option value="ean">EAN</option>
+                            <option value="itf-14">ITF-14</option>
+                            <option value="itf">ITF</option>
+                            <option value="msi">MSI</option>
+                            <option value="pharmacode">Pharmacode</option>
+                        </select>
+                        <input class="form-control" type="text" id="barcodeValue" style="width: 15vw; border-color: black;">
+                      </div>
+                </div>
+                <div id="errorMessage" class="form-text" style="display: none; color: red;"></div>
+            </div>
+            <div class="col-12 text-center">
+                <svg id="barcode"></svg>
+            </div>
+            <div class="col-12 p-3 text-center">
+                <button class="btn btn-light border-dark" id="barcodeButton" onclick="generateBarcode()">Generate Barcode <i class="fas fa-cogs"></i></button>
+                <button class="btn btn-light border-dark" id="saveSvgButton" onclick="svgToPng('barcode', 'barcode.png')">Save Barcode <i class="fas fa-download"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.4/JsBarcode.all.min.js" integrity="sha512-9KXy/GLQQ+pPW7VwnI74DzjzUix9GINtAAPwWl4vzaaEqgfOeDgkea6UWM4xAvCeoeiBxzYepep2xxbkX3w/pg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script>
+        function generateBarcode() {
+            try {
+                JsBarcode("#barcode", document.getElementById("barcodeValue").value, {
+                    format: document.getElementById("barcodeFormat").value,
+                    width: 2,
+                    height: 100,
+                    displayValue: false
+                });
+                document.getElementById("errorMessage").style.display = "none";
+                document.getElementById("barcodeValue").style.borderColor = "black";
+            } catch (error) {
+                document.getElementById("errorMessage").style.display = "block";
+                document.getElementById("barcodeValue").style.borderColor = "red";
+                if(error.includes("æ")) {
+                    console.error('The letter "æ" is not valid!');
+                    document.getElementById("errorMessage").innerHTML = 'The letter "æ" is not valid!';
+                }
+                else if(error.includes("ø")) {
+                    console.error('The letter "ø" is not valid!');
+                    document.getElementById("errorMessage").innerHTML = 'The letter "ø" is not valid!';
+                }
+                else if(error.includes("å")) {
+                    console.error('The letter "å" is not valid!');
+                    document.getElementById("errorMessage").innerHTML = 'The letter "å" is not valid!';
+                }
+                else {
+                    const prosessedBarcode = error.slice(0, error.length - 1) + "a barcode";
+                    console.error(prosessedBarcode);
+                    document.getElementById("errorMessage").innerHTML = prosessedBarcode;
+                }
+            }
+        }
+
+        const input = document.getElementById("barcodeValue");
+        input.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("barcodeButton").click();
+            }
+        });
+    </script>
+</body>
+</html>
