@@ -26,16 +26,18 @@
                         <select class="form-select" style="border-color: black;" id="barcodeFormat" aria-label="Example select with button addon">
                             <option value="code128">CODE128</option>
                             <option value="code39">CODE39</option>
-                            <option value="ean">EAN</option>
-                            <option value="itf-14">ITF-14</option>
                             <option value="itf">ITF</option>
                             <option value="msi">MSI</option>
                             <option value="pharmacode">Pharmacode</option>
                         </select>
                         <input class="form-control" type="text" id="barcodeValue" style="width: 15vw; border-color: black;">
-                      </div>
+                    </div>
                 </div>
                 <div id="errorMessage" class="form-text" style="display: none; color: red;"></div>
+                <div class="p-2">
+                    <input type="checkbox" id="displayValueCheckbox" class="form-check-input mt-1">
+                    <label for="displayValueCheckbox">Display Barcode Value</label>
+                </div>
             </div>
             <div class="col-12 text-center">
                 <svg id="barcode"></svg>
@@ -52,12 +54,22 @@
     <script>
         function generateBarcode() {
             try {
-                JsBarcode("#barcode", document.getElementById("barcodeValue").value, {
-                    format: document.getElementById("barcodeFormat").value,
-                    width: 2,
-                    height: 100,
-                    displayValue: false
-                });
+                if(document.getElementById("displayValueCheckbox").checked){
+                    JsBarcode("#barcode", document.getElementById("barcodeValue").value, {
+                        format: document.getElementById("barcodeFormat").value,
+                        width: 2,
+                        height: 100,
+                        displayValue: true
+                    });
+                }
+                else {
+                    JsBarcode("#barcode", document.getElementById("barcodeValue").value, {
+                        format: document.getElementById("barcodeFormat").value,
+                        width: 2,
+                        height: 100,
+                        displayValue: false
+                    });
+                }
                 document.getElementById("errorMessage").style.display = "none";
                 document.getElementById("barcodeValue").style.borderColor = "black";
             } catch (error) {
