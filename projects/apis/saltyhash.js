@@ -404,16 +404,14 @@
 
 //Hashfunction
 function hash(input){
-    const salt = Math.random().toString(36).substring(2).slice(0,5);
-    const hashedString = md5(input + salt);
-    const result = salt + hashedString;
-    return result;
+    const salt = Math.random().toString(36).slice(2,12);
+    return salt + md5(input + salt);
 }
 
 //Comparefunction
 function compare(input, hash){
-    const salt = hash.slice(0,5);
-    if(hash.slice(5) == md5(input + salt)){
+    console.log(hash.slice(0,15))
+    if(hash.slice(10) == md5(input + hash.slice(0,10))){
         return true;
     }
     else{
