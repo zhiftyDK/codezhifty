@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap-5.1.0-dist/css/bootstrap.min.css">
+    <script src="../bootstrap-5.1.0-dist/js/bootstrap.bundle.min.js"></script>
+    <title>Hackers Paradise</title>
+</head>
+<body class="bg-secondary">
+    <div class="container-fluid">
+        <div class="row p-3 bg-dark shadow align-items-center">
+            <div class="col-6">
+                <a href="javascript:window.open('//localhost:5500/index.html', target='_self')" style="text-decoration: none;">
+                    <h2 style="color: #f8f9fa;">Hackers Paradise</h2>
+                </a>
+            </div>
+            <div class="col-6 text-end">
+                <a href="/login" class="p-2" style="outline: none;">
+                    <button class="btn btn-light">Login</button>
+                </a>
+                <a href="/register" class="p-2">
+                    <button class="btn btn-light">Register</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row align-items-center justify-content-center" style="height: 80vh; color: #f8f9fa;">
+            <div class="col-8 text-center">
+                <h1>Register</h1>
+                <br>
+                <form action="/register" method="POST">
+                    <label for="name" class="form-label">Name</label>
+                    <div class="d-flex justify-content-center">
+                        <input type="text" id="name" name="name" class="form-control" style="width: 250px;" required>
+                    </div>
+                    <br>
+                    <label for="email" class="form-label">Email</label>
+                    <div class="d-flex justify-content-center">
+                        <input type="email" id="email" name="email" class="form-control" style="width: 250px;" required>
+                    </div>
+                    <br>
+                    <label for="password" class="form-label">Password</label>
+                    <div class="d-flex justify-content-center">
+                        <input type="password" id="password" name="password" class="form-control" style="width: 250px;" required>
+                    </div>
+                    <div class="p-1">
+                        <% if (messages.error) { %>
+                            <strong><%= messages.error %></strong>
+                        <% } %>
+                    </div>
+                    <br>
+                <button type="submit" class="btn btn-light">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

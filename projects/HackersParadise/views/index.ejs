@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap-5.1.0-dist/css/bootstrap.min.css">
+    <script src="../bootstrap-5.1.0-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.css">
+    <title>Hackers Paradise</title>
+</head>
+<body class="bg-secondary">
+    <div class="container-fluid">
+        <div class="row p-3 bg-dark shadow align-items-center">
+            <div class="col-6">
+                <a href="javascript:window.open('//localhost:5500/index.html', target='_self')" style="text-decoration: none;">
+                    <h2 style="color: #f8f9fa;">Hackers Paradise</h2>
+                </a>
+            </div>
+            <div class="col-6 text-end">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">User <i class="fas fa-user"></i></button>
+                  <ul class="dropdown-menu p-4" aria-labelledby="dropdownMenuButton1">
+                        <li class="text-center pb-3 pt-2">
+                            <h4><strong><%= name %> </strong></h4>
+                        </li>
+                        <li class="pb-2 text-center">
+                            <p>You are currently logged in as "<%= name %>",<br> and logging out is as simple as<br> clicking the button underneath!"</p>
+                        </li>
+                        <li class="text-center">
+                            <form action="/logout?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-light">Log Out</button>
+                            </form>
+                        </li>
+                  </ul>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row align-items-center justify-content-center" style="height: 80vh; color: #f8f9fa;">
+            <div class="col-8 text-center">
+                <h3>Hackers Paradise a place for hackers, programmers and random dudes!</h3>
+                <h3>Learn to code with step by step tutorials!</h3>
+                <br>
+                <h3>And also hacking tutorials for e.g. arduino etc.</h3>
+                <br>
+                <p>This is ethical hacking and i dont take responsibility for bad use of the tutroials!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
