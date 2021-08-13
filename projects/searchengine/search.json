@@ -1,0 +1,18 @@
+[
+    {
+        "keyword": "hello",
+        "header": "Hello sir how are you!"
+    },
+    {
+        "keyword": "hello",
+        "header": "I am great thanks"
+    },
+    {
+        "keyword": "hello",
+        "header": "Cmd/console.log('hey')"
+    },
+    {
+        "keyword": "weather",
+        "header": "The weather is great!"
+    }
+]
