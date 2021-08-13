@@ -1,18 +1,27 @@
 [
     {
         "keyword": "ping",
-        "header": "Hello sir how are you!"
+        "header": "Hello sir how are you!",
+        "description": "Hi this is my tutorial on this search engine",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https://www.youtube.com",
+        "linkTarget": "_blank",
+        "boxShadow": "0px 0px 20px 10px #fff"
     },
     {
         "keyword": "banana",
-        "header": "I am great thanks"
+        "header": "I am great thanks",
+        "description": "Hi this is my tutorial on this search engine"
     },
     {
         "keyword": "hello",
-        "header": "Cmd/console .log('hey')"
+        "header": "Cmd/co nsole .log('h ey')",
+        "description": "Hi this is my tutorial on this search engine"
     },
     {
         "keyword": "weather",
-        "header": "The weather is great!"
+        "header": "The weather is great!",
+        "description": "Hi this is my tutorial on this search engine"
     }
 ]

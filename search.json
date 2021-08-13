@@ -1,0 +1,20 @@
+[
+    {
+        "keyword": "svgtopng, api, svg, converter",
+        "header": "svgtopng api",
+        "description": "This is an api for converting svg directly to png",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https://github.com/CodeZhifty/codezhifty/blob/main/projects/apis/svgtopng.js",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "hash, salt, saltyhash, api",
+        "header": "saltyhash api",
+        "description": "This is an api for salting and hashing e.g. passwords",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https://github.com/CodeZhifty/codezhifty/blob/main/projects/apis/saltyhash.js",
+        "linkTarget": "_blank"
+    }
+]
