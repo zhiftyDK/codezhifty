@@ -20,8 +20,9 @@ if(document.getElementById("Isearch")) {
     //Input searchfield
     const input = document.createElement("input");
     input.id = "searchField";
+    input.autocomplete = "off";
     input.type = "text";
-    input.placeholder = "Search here";
+    input.placeholder = "Intilligence Search";
     input.style.borderRadius = "10px";
     input.style.padding = "10px";
     input.style.width = "50vw";
@@ -52,10 +53,13 @@ if(document.getElementById("Isearch")) {
                     const searchObject = document.createElement("div");
                     searchObject.id = "searchObject"
                     searchObject.style.height = "100px";
-                    searchObject.style.width = "10vw";
+                    searchObject.style.width = "100px";
                     searchObject.style.backgroundColor = "black";
                     searchObject.style.color = "white";
-                    searchObject.innerHTML = data[i].header;
+                    searchObject.style.padding = "20px";
+                    searchObject.style.margin = "20px";
+                    searchObject.style.borderRadius = "10px";
+                    searchObject.innerHTML = `<strong>${data[i].header}</strong>`;
                     document.getElementById("responseFieldDiv").appendChild(searchObject);
                 }
                 else {
@@ -65,5 +69,4 @@ if(document.getElementById("Isearch")) {
         }
         xhr.send();
     })
-    document.body.onload(document.getElementById)
 }

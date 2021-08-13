@@ -1,15 +1,15 @@
 [
     {
-        "keyword": "hello",
+        "keyword": "ping",
         "header": "Hello sir how are you!"
     },
     {
-        "keyword": "hello",
+        "keyword": "banana",
         "header": "I am great thanks"
     },
     {
         "keyword": "hello",
-        "header": "Cmd/console.log('hey')"
+        "header": "Cmd/console .log('hey')"
     },
     {
         "keyword": "weather",
