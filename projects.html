@@ -9,8 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,500&display=swap" rel="stylesheet">
     <title>CodeZhifty</title>
     <style>
-        body{
-            overflow: hidden !important;
+        *{
+            -ms-overflow-style: none;
+            scrollbar-width: none; 
+        }
+        *::-webkit-scrollbar {
+        display: none;
         }
     </style>
 </head>
@@ -25,7 +29,7 @@
             <ul class="nav-links">
                 <li><a href="./index.html">Home</a></li>
                 <li><a href="./about.html">About</a></li>
-                <li><a href="#" style="background-color: black; border-radius: 5px; padding: 8px; text-shadow: none;">Projects</a></li>
+                <li><a href="#" style="background-color: black; border-radius: 5px; padding: 8px; text-shadow: none; box-shadow: 0px 0px 12px 5px #fff;">Projects</a></li>
                 <li><a href="https://github.com/CodeZhifty/codezhifty", target="blank">Github</a></li>
             </ul>
             <div class="menubtn">

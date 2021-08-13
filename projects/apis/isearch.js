@@ -76,6 +76,7 @@ if(document.getElementById("Isearch")) {
                     searchObject.style.backgroundColor = data[i].backgroundColor ? data[i].backgroundColor : "black";
                     searchObject.style.color = data[i].textColor ? data[i].textColor : "white";
                     searchObject.style.padding = "20px";
+                    searchObject.style.maxWidth = "400px";
                     searchObject.style.borderRadius = "10px";
                     searchObject.style.boxShadow = data[i].boxShadow ? data[i].boxShadow : false;
                     searchObject.innerHTML = `

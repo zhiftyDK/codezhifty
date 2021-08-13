@@ -1,7 +1,7 @@
 [
     {
         "keyword": "svgtopng, api, svg, converter",
-        "header": "svgtopng api",
+        "header": "Svgtopng api",
         "description": "This is an api for converting svg directly to png",
         "backgroundColor": "black",
         "textColor": "white",
@@ -10,11 +10,110 @@
     },
     {
         "keyword": "hash, salt, saltyhash, api",
-        "header": "saltyhash api",
+        "header": "Saltyhash api",
         "description": "This is an api for salting and hashing e.g. passwords",
         "backgroundColor": "black",
         "textColor": "white",
         "link": "https://github.com/CodeZhifty/codezhifty/blob/main/projects/apis/saltyhash.js",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "searchengine, search, searchbar, isearch, api",
+        "header": "Isearch api",
+        "description": "Isearch aka intilligence search. Isearch is a search engine for websites like used above!",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https://github.com/CodeZhifty/codezhifty/blob/main/projects/apis/isearch.js",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "audiovisualizer, v1, version1",
+        "header": "Audiovisualizer",
+        "description": "Version 1 of my audiovisualizer, mp3 with effects!",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https: //codezhifty.github.io/codezhifty/projects/audiovisualizer/v1/index.html",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "audiovisualizer, v2, version2",
+        "header": "Audiovisualizer",
+        "description": "Version 2 of my audiovisualizer, mp3 with effects!",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https: //codezhifty.github.io/codezhifty/projects/audiovisualizer/v1/index.html",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "browserlauncher, steam, games",
+        "header": "Browserlauncher",
+        "description": "Keep your games in one place!",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https: //codezhifty.github.io/codezhifty/projects/browserlauncher",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "cells, cellradiation, radiation, schoool",
+        "header": "Cellraditation",
+        "description": "A simulation of what happens when cells are exposed to radiation!",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https: //codezhifty.github.io/codezhifty/projects/cellradiation",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "hacking, hackersparadise, tutorials",
+        "header": "Hackers Paradise",
+        "description": "IN PROGRESS!!",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https: //codezhifty.github.io/codezhifty/projects/hackersparadise",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "searchengine, preview",
+        "header": "Isearch preview",
+        "description": "A preview of Isearch!",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https: //codezhifty.github.io/codezhifty/projects/searchengine",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "solarsystem, simulation",
+        "header": "Solarsystem",
+        "description": "A brief simulation of our solarsystem!",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https: //codezhifty.github.io/codezhifty/projects/solarsystem",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "terminal, zhifty, clientside",
+        "header": "Zhifty Terminal",
+        "description": "The first client side browser terminal ever!",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https: //codezhifty.github.io/codezhifty/projects/terminal",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "voiceassistant, googlehome, alexa",
+        "header": "Voiceassistant",
+        "description": "IN PROGRESS!!",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https: //codezhifty.github.io/codezhifty/projects/voiceassistant",
+        "linkTarget": "_blank"
+    },
+    {
+        "keyword": "weathervisualizer",
+        "header": "Weathervisualizer",
+        "description": "Show the weather a little nicer!",
+        "backgroundColor": "black",
+        "textColor": "white",
+        "link": "https: //codezhifty.github.io/codezhifty/projects/weathervisualizer",
         "linkTarget": "_blank"
     }
 ]
