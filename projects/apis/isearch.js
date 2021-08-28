@@ -82,10 +82,17 @@ if(document.getElementById("Isearch")) {
                     searchObject.innerHTML = `
                     <h3>${data[i].header ? data[i].header : ""}</h3>
                     <p>${data[i].description ? data[i].description : ""}</p>
-                    <a href="${data[i].link ? data[i].link : "javascript:alert('This button has no link!')"}" target="${data[i].linkTarget ? data[i].linkTarget : "_self"}">
-                    <button style="padding: 10px; border-radius: 10px;" onMouseOver="this.style.backgroundColor='#cccccc'; this.style.cursor='pointer';" onMouseOut="this.style.backgroundColor='#efefef';">Learn More!</button>
-                    </a>
                     `;
+                    if(data[i].link){
+                        searchObject.innerHTML = searchObject.innerHTML + `<a href="${data[i].link ? data[i].link : "javascript:alert('This button has no link!')"}" target="${data[i].linkTarget ? data[i].linkTarget : "_self"}">
+                        <button style="padding: 10px; border-radius: 10px;" onMouseOver="this.style.backgroundColor='#cccccc'; this.style.cursor='pointer';" onMouseOut="this.style.backgroundColor='#efefef';">${data[i].linkText ? data[i].linkText : "Read More!"}</button>
+                        </a>`
+                    }
+                    if(data[i].copyLink){
+                        searchObject.innerHTML = searchObject.innerHTML + `<a href="javascript:navigator.clipboard.writeText('${data[i].copyLink}')">
+                        <button style="padding: 10px; border-radius: 10px;" onMouseOver="this.style.backgroundColor='#cccccc'; this.style.cursor='pointer';" onMouseOut="this.style.backgroundColor='#efefef';">${data[i].copyLinkText ? data[i].copyLinkText : "Copy Link!"}</button>
+                        </a>`
+                    }
                     document.getElementById("responseFieldDiv").appendChild(searchObject);
                 }
             }
