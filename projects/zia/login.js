@@ -1,7 +1,7 @@
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const login = document.getElementById("login");
-// username.focus();
+email.focus();
 
 const firebaseConfig = {
     apiKey: "AIzaSyAI-cXtii8WbqM-LWuJLW4O4DmXNvD3fjQ",
