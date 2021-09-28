@@ -155,7 +155,7 @@ export function record() {
         else{
             setTimeout(function(){ record() }, 1200);
         }
-
-    }  
+        
+    }
     recognition.start();
 }
