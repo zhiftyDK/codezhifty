@@ -102,12 +102,11 @@ export function record() {
             hours = today.getHours(),
             minutes = today.getMinutes(),
             seconds = today.getSeconds();
-            const weekDayFull = weekDay - 1;
-            var weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+            var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
             var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             var fullDate = monthDay + " " + months[month] + " " + year;
             var tomorrow = monthDay + 1 + " " + months[month] + " " + year;
-            speechSynthesis.speak(new SpeechSynthesisUtterance("Good morning sir, the time is" + hours + " " + minutes + ", the weather in Silkeborg is " + weatherDatabase + ", have a great " + weekDays[weekDayFull] + " sir"))
+            speechSynthesis.speak(new SpeechSynthesisUtterance("Good morning sir, the time is" + hours + " " + minutes + ", the weather in Silkeborg is " + weatherDatabase + ", have a great " + weekDays[weekDay] + " sir"))
             setTimeout(function(){ record()}, 3000);
         }
 
