@@ -13,7 +13,6 @@ const scrollingElement = (document.scrollingElement || document.body)
 
 //Load Terminal
 function loadTerminal() {
-    terminalInput.focus()
     terminalDatabase.push("Zhifty Terminal");
     terminalDatabase.push("The first client side terminal ever!");
     terminalDatabase.push("Write 'help' for a list of commands");
@@ -41,8 +40,9 @@ window.onload = loadTerminal;
 
 
 //Focus Terminal
-//setInterval(() => {
-//});
+setInterval(() => {
+    terminalInput.focus();
+});
 
 //ipconfig
 function callback(response){
