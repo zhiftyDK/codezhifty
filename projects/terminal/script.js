@@ -5,10 +5,15 @@ const terminalPrefix = document.getElementById("terminalPrefix");
 const terminalInput = document.getElementById("terminalInput");
 const matrix = document.getElementById("matrix");
 const terminalDatabase = [];
+if(sessionStorage.getItem("priorCommand") == null) {
+    let priorCommand = [];
+    sessionStorage.setItem("priorCommand", JSON.stringify(priorCommand));
+}
 const scrollingElement = (document.scrollingElement || document.body)
 
 //Load Terminal
 function loadTerminal() {
+    terminalInput.focus()
     terminalDatabase.push("Zhifty Terminal");
     terminalDatabase.push("The first client side terminal ever!");
     terminalDatabase.push("Write 'help' for a list of commands");
@@ -36,9 +41,8 @@ window.onload = loadTerminal;
 
 
 //Focus Terminal
-setInterval(() => {
-    terminalInput.focus();
-});
+//setInterval(() => {
+//});
 
 //ipconfig
 function callback(response){
@@ -50,6 +54,33 @@ $.ajax({
     dataType:"jsonp"
 })
 
+let priorCommandState = JSON.parse(sessionStorage.getItem("priorCommand")).length;
+//PriorCommand Handler
+terminalInput.addEventListener("keyup", function(event) {
+    let tmp = JSON.parse(sessionStorage.getItem("priorCommand"));
+    if (event.keyCode === 38) {
+        event.preventDefault();
+        priorCommandState = priorCommandState - 1;
+        terminalInput.value = tmp[priorCommandState];
+        if(tmp[priorCommandState] == undefined){
+            priorCommandState = priorCommandState + 1;
+            terminalInput.value = tmp[priorCommandState];
+            if(tmp.length === 0){
+                terminalInput.value = "";
+            }
+        }
+    } 
+    else if(event.keyCode === 40) {
+        event.preventDefault();
+        priorCommandState = priorCommandState + 1;
+        terminalInput.value = tmp[priorCommandState];
+        if(tmp[priorCommandState] == undefined){
+            priorCommandState = priorCommandState - 1;
+            terminalInput.value = "";
+        }
+    }
+});
+
 //Terminal Handler
 terminalInput.addEventListener("keyup", function(event) {
     if (event.keyCode === 13 && terminalInput.value !== "") {
@@ -60,27 +91,40 @@ terminalInput.addEventListener("keyup", function(event) {
         if(terminalInput.value == "help") { //list of commands
             terminalDatabase.push("$ " + terminalInput.value);
             terminalDatabase.push("Zterm Commands...");
+            terminalDatabase.push("");
             terminalDatabase.push("version | Shows the version of Zterm youre running");
+            terminalDatabase.push("");
             terminalDatabase.push("clear | Clears/resets the terminal");
+            terminalDatabase.push("");
             terminalDatabase.push("start www.example.com | Start/open any webpage/url")
+            terminalDatabase.push("");
             terminalDatabase.push("ping www.example.com | Ping any website to check the response time");
+            terminalDatabase.push("");
             terminalDatabase.push("lookup 88.888.888.88 | Lookup any IP adress");
+            terminalDatabase.push("");
             terminalDatabase.push("color limegreen | Change color to anything you would like");
+            terminalDatabase.push("");
             terminalDatabase.push("ipconfig | Get you're IP adress");
+            terminalDatabase.push("");
             terminalDatabase.push("matrix | Display the matrix");
+            terminalDatabase.push("");
             terminalDatabase.push("echo text | Display any message");
+            terminalDatabase.push("");
             terminalDatabase.push("calc 5 + 5 | Built in calculator");
+            terminalDatabase.push("");
             terminalDatabase.push("run alert('text') | Run native javascript code");
+            terminalDatabase.push("");
             terminalDatabase.push("nrplt AB12345 | Check any Danish numberplate");
+            terminalDatabase.push("");
             terminalDatabase.push("exerunner.create C:\\GAMEPATH | Create Aka. register any executable for exerunner");
+            terminalDatabase.push("");
             terminalDatabase.push("exerunner.launch GAMENAME | Launch any exerunner registered executeable");
+            terminalDatabase.push("");
             terminalDatabase.push("exerunner.registry | List of all exerunner registered executables");
+            terminalDatabase.push("");
             terminalDatabase.push("exerunner.clear | Clear list of all exerunner registered executables");
             terminalDatabase.push("");
-            terminalDatabase.push("");
-            const formatTerminalDatabase = terminalDatabase + "";
-            const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
-            terminalText.innerHTML = formattedTerminalDatabase;
+            pushCommand();
         }
         else if(terminalInput.value == "version") { //shows version information
             terminalDatabase.push("$ " + terminalInput.value);
@@ -234,10 +278,20 @@ terminalInput.addEventListener("keyup", function(event) {
             const nrplt = terminalInput.value.replace(/nrplt /g, "")
             terminalDatabase.push("Checking numberplate " + nrplt + "...");
             terminalDatabase.push("");
-            setTimeout(() => {
-                window.open("https://www.tjekbil.dk/nummerplade/" + nrplt + "/overblik");
-            }, 2000);
             pushCommand();
+            fetch('http://159.65.122.62:3000?q=' + nrplt + '&key=idsjfi0suef90s3pofidsif903s')
+            .then(response => response.json())
+            .then(data => {
+                terminalDatabase.push("Brand: " + data.mærke.replace(",", "."));
+                terminalDatabase.push("Model: " + data.model.replace(",", "."));
+                terminalDatabase.push("Variant: " + data.variant.replace(",", "."));
+                terminalDatabase.push("Type: " + data.type.replace(",", "."));
+                terminalDatabase.push("Purpose: " + data.anvendelse.replace(",", "."));
+                terminalDatabase.push("Numberplate: " + data.nummerplade.replace(",", "."));
+                terminalDatabase.push("ChassisNumber: " + data.stelnr.replace(",", "."));
+                terminalDatabase.push("");
+                pushCommand();                
+            });
         }
         else if(terminalInput.value.endsWith("nrplt" || "nrplt ")){
             terminalDatabase.push("$ " + terminalInput.value);
@@ -322,13 +376,17 @@ terminalInput.addEventListener("keyup", function(event) {
         
         //Terminal DB Push
         function pushCommand() {
+            addPriorCommand();
             const formatTerminalDatabase = terminalDatabase + "";
             const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
             terminalText.innerHTML = formattedTerminalDatabase;
+            let tmp = JSON.parse(sessionStorage.getItem("priorCommand"));
+            priorCommandState = tmp.length;
             if(sessionStorage.getItem("runJsCode") != null){
                 javascriptCode();
                 sessionStorage.removeItem("runJsCode");
             }
+            scrollingElement.scrollTop = scrollingElement.scrollHeight;
         }
 
         function pushNoncommand() {
@@ -338,9 +396,18 @@ terminalInput.addEventListener("keyup", function(event) {
             const formatTerminalDatabase = terminalDatabase + "";
             const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
             terminalText.innerHTML = formattedTerminalDatabase;
+            scrollingElement.scrollTop = scrollingElement.scrollHeight;
+        }
+
+        function addPriorCommand() {
+            let tmp = JSON.parse(sessionStorage.getItem("priorCommand"));
+            if (terminalInput.value != "") {
+                tmp = tmp.filter(e => e !== terminalInput.value);
+                tmp.push(terminalInput.value);
+                sessionStorage.setItem("priorCommand", JSON.stringify(tmp));
+            }
         }
 
         terminalInput.value = "";
-        scrollingElement.scrollTop = scrollingElement.scrollHeight;
     }
 });

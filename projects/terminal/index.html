@@ -9,12 +9,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>ZTerm</title>
     <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        *::-webkit-scrollbar {
+        display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        * {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        }
+        
         *{
             margin: 2px;
             padding: 2px;
             background-color: black;
             color: white;
-            overflow: hidden;
+            overflow-x: hidden;
             font-family: 'Fira Code', monospace;
             font-size: 15px;
         }
