@@ -397,7 +397,6 @@ terminalInput.addEventListener("keyup", function(event) {
                 javascriptCode();
                 sessionStorage.removeItem("runJsCode");
             }
-            scrollingElement.scrollTop = scrollingElement.scrollHeight;
         }
 
         function pushNoncommand() {
@@ -407,7 +406,6 @@ terminalInput.addEventListener("keyup", function(event) {
             const formatTerminalDatabase = terminalDatabase + "";
             const formattedTerminalDatabase = formatTerminalDatabase.split(",").join("<br>");
             terminalText.innerHTML = formattedTerminalDatabase;
-            scrollingElement.scrollTop = scrollingElement.scrollHeight;
         }
 
         function addPriorCommand() {
@@ -418,7 +416,10 @@ terminalInput.addEventListener("keyup", function(event) {
                 sessionStorage.setItem("priorCommand", JSON.stringify(tmp));
             }
         }
-
+        
         terminalInput.value = "";
+        setTimeout(() => {
+            scrollingElement.scrollTop = scrollingElement.scrollHeight;
+        }, 100);
     }
 });
