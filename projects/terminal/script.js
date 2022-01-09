@@ -279,7 +279,7 @@ terminalInput.addEventListener("keyup", function(event) {
             terminalDatabase.push("Checking numberplate " + nrplt + "...");
             terminalDatabase.push("");
             pushCommand();
-            fetch('http://159.65.122.62:3000?q=' + nrplt + '&key=idsjfi0suef90s3pofidsif903s')
+            fetch('https://82a4-80-208-65-225.ngrok.io/?q=' + nrplt)
             .then(response => response.json())
             .then(data => {
                 terminalDatabase.push("Brand: " + data.mærke.replace(",", "."));
