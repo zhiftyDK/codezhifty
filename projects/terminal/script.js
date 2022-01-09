@@ -289,6 +289,7 @@ terminalInput.addEventListener("keyup", function(event) {
                 terminalDatabase.push("Purpose: " + data.anvendelse.replace(",", "."));
                 terminalDatabase.push("Numberplate: " + data.nummerplade.replace(",", "."));
                 terminalDatabase.push("ChassisNumber: " + data.stelnr.replace(",", "."));
+                terminalDatabase.push("Link: <a style='padding: 0px; margin: 0px;' href='https://www.nummerplade.net/nummerplade/" + nrplt + ".html'>https://www.nummerplade.net/</a>");
                 terminalDatabase.push("");
                 pushCommand();                
             });
@@ -367,6 +368,16 @@ terminalInput.addEventListener("keyup", function(event) {
             terminalDatabase.push("$ " + terminalInput.value);
             localStorage.setItem("exerunner", "null")
             terminalDatabase.push("Exerunner registry is cleared!");
+            terminalDatabase.push("");
+            pushCommand();
+        }
+        else if(terminalInput.value.includes("crypto ")) { //Clear list of all exerunner registered executables
+            terminalDatabase.push("$ " + terminalInput.value);
+            const cryptoType = terminalInput.value.replace("crypto ", "")
+            terminalDatabase.push("");
+            if(cryptoType == "GKC") {
+                terminalDatabase.push("<img src='https://cdn.discordapp.com/attachments/929297215325884427/929814327299567676/output-onlinegiftools.gif'>")  
+            }
             terminalDatabase.push("");
             pushCommand();
         }
